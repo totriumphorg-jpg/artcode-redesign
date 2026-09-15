@@ -127,9 +127,9 @@ export default function Home() {
       </header>
 
       <section className="relative min-h-[720px] sm:min-h-[760px] flex items-center overflow-hidden bg-[#020617]">
-        <img src={ASSETS.hero} alt="Абстрактная композиция исходного сайта ARTCODE" className="absolute inset-0 w-full h-full object-cover object-center opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/85 via-[#020617]/58 to-[#020617]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/65 via-transparent to-[#020617]/65" />
+        <img src={ASSETS.hero} alt="Танцовщица на театральной сцене" className="absolute inset-0 w-full h-full object-cover object-[72%_center] sm:object-center opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/90 via-[#020617]/60 to-[#020617]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/82 via-[#020617]/50 to-[#020617]/24" />
         <div className="absolute top-[14%] right-[12%] h-56 w-56 rounded-full bg-amber-400/15 blur-[100px] motion-ambient" />
         <div className="absolute bottom-[15%] left-[12%] h-64 w-64 rounded-full bg-fuchsia-500/10 blur-[110px] motion-ambient" />
 
@@ -279,7 +279,7 @@ export default function Home() {
       <section id="jury" className="py-20 bg-[#020617] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 blur-[120px] rounded-full" />
         <div className="container mx-auto px-4 sm:px-6 relative">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"><div><div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold mb-3">Жюри мирового значения</div><h2 className="text-3xl sm:text-4xl font-serif font-bold text-white">Экспертный совет платформы ARTCODE</h2><p className="text-slate-400 text-sm mt-2 max-w-xl">Действующие артисты и педагоги ведущих творческих вузов мира. Фотографии — оригинальные материалы с сайта ARTCODE.</p></div><div className="text-xs text-amber-300 font-medium">Именная рецензия с рекомендациями каждому участнику</div></div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"><div><div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold mb-3">Жюри мирового значения</div><h2 className="text-3xl sm:text-4xl font-serif font-bold text-white">Экспертный совет платформы ARTCODE</h2><p className="text-slate-400 text-sm mt-2 max-w-xl">Действующие артисты и педагоги ведущих творческих вузов мира. Подбираем актуальные портреты из авторитетных источников для точной и современной подачи.</p></div><div className="text-xs text-amber-300 font-medium">Именная рецензия с рекомендациями каждому участнику</div></div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {JURY_MEMBERS.map((member) => {
@@ -304,8 +304,8 @@ export default function Home() {
       </section>
 
       <section id="partners" className="py-20 bg-[#020617]">
-        <div className="container mx-auto px-4 sm:px-6"><div className="text-center max-w-xl mx-auto mb-12"><div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold mb-3">Партнеры конкурса</div><h2 className="text-3xl font-serif font-bold text-white">Культурные ассоциации и организации</h2><p className="text-slate-400 text-xs sm:text-sm mt-2">Оригинальные логотипы и ссылки партнеров из раздела «Партнеры» сайта ARTCODE</p></div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">{PARTNERS_DATA.map((p) => <a key={p.logoKey} href={p.url} target="_blank" rel="noopener noreferrer" className="group soft-lift min-h-44 p-5 rounded-2xl bg-white border border-slate-200 flex flex-col items-center justify-between text-center"><div className="h-20 w-full flex items-center justify-center"><img src={ASSETS.partners[p.logoKey]} alt={`Логотип партнера: ${p.name}`} className="max-w-full max-h-full object-contain image-zoom" /></div><div className="pt-3"><div className="text-xs font-bold text-slate-800 group-hover:text-amber-700 transition-colors">{p.name}</div><div className="text-[10px] text-slate-500 mt-1">{p.country} • {p.category}</div></div></a>)}</div>
+        <div className="container mx-auto px-4 sm:px-6"><div className="text-center max-w-xl mx-auto mb-12"><div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold mb-3">Партнеры конкурса</div><h2 className="text-3xl font-serif font-bold text-white">Культурные ассоциации и организации</h2><p className="text-slate-400 text-xs sm:text-sm mt-2">Названия партнеров вынесены отдельной контрастной строкой: их легко прочесть даже на светлых или минималистичных логотипах.</p></div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">{PARTNERS_DATA.map((p) => <a key={p.logoKey} href={p.url} target="_blank" rel="noopener noreferrer" aria-label={`Открыть сайт партнера: ${p.name}`} className="group soft-lift min-h-52 rounded-2xl bg-[#101a31] border border-slate-700/80 flex flex-col overflow-hidden text-center shadow-lg shadow-black/20"><div className="px-3 pt-3 text-[11px] sm:text-xs font-bold tracking-wide uppercase text-white min-h-10 flex items-center justify-center leading-tight">{p.name}</div><div className="mx-3 h-24 min-h-24 rounded-xl bg-white flex items-center justify-center p-3 border border-slate-200 shadow-inner"><img src={ASSETS.partners[p.logoKey]} alt={`Официальный логотип партнера: ${p.name}`} className="max-w-full max-h-full object-contain image-zoom" /></div><div className="p-3 pt-2"><div className="text-[10px] text-slate-300 leading-snug">{p.country} • {p.category}</div><div className="mt-1 text-[10px] font-semibold text-amber-300 opacity-0 group-hover:opacity-100 transition-opacity">Открыть сайт &rarr;</div></div></a>)}</div>
         </div>
       </section>
 
