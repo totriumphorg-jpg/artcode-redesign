@@ -226,12 +226,12 @@ export default function Home() {
                     <span className="px-2.5 py-1 rounded-full text-[11px] bg-slate-800 text-slate-200 border border-slate-700">{comp.badge}</span>
                   </div>
 
-                  {/* Dedicated image frame with natural aspect ratio; no harsh cropping */}
-                  <div className="h-64 sm:h-72 w-full relative overflow-hidden bg-[#070e20] flex items-center justify-center">
+                  {/* Fixed 16:9 presentation keeps the complete photographic composition visible at every breakpoint. */}
+                  <div className="aspect-video w-full relative overflow-hidden bg-[#070e20] flex items-center justify-center">
                     <img
                       src={comp.id === 'misteriya-vokala' ? ASSETS.disciplines.folkVocal : getDisciplineImage(comp.discipline)}
                       alt={`Направление конкурса: ${comp.disciplineLabel}`}
-                      className="w-full h-full object-cover object-top sm:object-center transition-transform duration-500 group-hover:scale-105"
+                      className={`w-full h-full object-center transition-transform duration-500 ${comp.id === 'misteriya-vokala' ? 'object-cover group-hover:scale-[1.02]' : 'object-contain'}`}
                     />
                     <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0f172a] to-transparent pointer-events-none" />
                   </div>

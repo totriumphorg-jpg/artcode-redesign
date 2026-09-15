@@ -4,7 +4,7 @@ export const ASSETS = {
   triumphLogo: '/manus-storage/triumph-logo_e0f69ff5.svg',
   disciplines: {
     vocal: '/manus-storage/vocal-competition_13643ebd.jpg',
-    folkVocal: '/manus-storage/folk-academic-vocal_b71b2f15.jpg',
+    folkVocal: '/manus-storage/folk-academic-vocal-headsafe_21427d9c.jpg',
     choreography: '/manus-storage/dance-competition_fbb7c499.jpg',
     theater: '/manus-storage/theatre-competition_ed2ddf2c.jpg',
     instrumental: '/manus-storage/instrumental-competition_c03199fa.jpg',
