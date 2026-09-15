@@ -28,6 +28,7 @@ export interface Partner {
   country: string;
   category: string;
   url: string;
+  logoKey: 'cap-ferret' | 'ec' | 'litres' | 'sommerstudio' | 'obraztsova' | 'artcompass' | 'melos' | 'teatro' | 'koekla';
 }
 
 export interface WinnerResult {
@@ -41,7 +42,7 @@ export interface WinnerResult {
   date: string;
 }
 
-// All competitions strictly taken from the original ARTCODE project archives and active listings
+// Конкурсы взяты с оригинального сайта ARTCODE и из его архивных протоколов.
 export const COMPETITIONS_DATA: Competition[] = [
   {
     id: 'misteriya-vokala',
@@ -149,16 +150,16 @@ export const COMPETITIONS_DATA: Competition[] = [
   }
 ];
 
-// Jury list verbatim from original site
+// Состав жюри и формулировки биографий — оригинальный сайт ARTCODE.
 export const JURY_MEMBERS: JuryMember[] = [
   {
     id: 'silvio-zanon',
-    name: 'Сильвио Занон',
+    name: 'Cильвио Занон',
     role: 'Баритон, педагог',
     country: 'Италия',
     city: 'Верона',
     credentials: 'Ученик итальянского оперного певца Лучано Паваротти. Исполнял главные роли в La Scala (Милан), Большом театре (Москва), Staatsoper (Вена). Президент Культурной Ассоциации и директор Академии оперного пения Progetto Voce.',
-    avatarText: 'SZ'
+    avatarText: 'СЗ'
   },
   {
     id: 'kunito-nishitani',
@@ -167,7 +168,7 @@ export const JURY_MEMBERS: JuryMember[] = [
     country: 'Япония',
     city: 'Токио',
     credentials: 'Работал на факультетах Нью-Йоркского университета, Портлендского государственного университета, Музыкальной академии Роуз-Сити и Международной школы скрипки и альта Кунито.',
-    avatarText: 'KN'
+    avatarText: 'КН'
   },
   {
     id: 'alexander-paley',
@@ -176,7 +177,7 @@ export const JURY_MEMBERS: JuryMember[] = [
     country: 'США',
     city: 'Нью-Йорк',
     credentials: 'Заслуженный артист Молдавии. Лауреат Международного конкурса имени Иоганна Себастьяна Баха, организатор фестивалей классической музыки в Moulin d’Andé (Нормандия) и в Ричмонде.',
-    avatarText: 'AP'
+    avatarText: 'АП'
   },
   {
     id: 'dmitry-devdariani',
@@ -185,7 +186,7 @@ export const JURY_MEMBERS: JuryMember[] = [
     country: 'Великобритания',
     city: 'Лондон',
     credentials: 'Поэт, педагог, сценарист, художественный руководитель Театра Русской Классики в Лондоне.',
-    avatarText: 'DD'
+    avatarText: 'ДД'
   },
   {
     id: 'helene-berger',
@@ -194,7 +195,7 @@ export const JURY_MEMBERS: JuryMember[] = [
     country: 'Франция',
     city: 'Париж',
     credentials: 'Преподаватель фортепиано в Национальной французской консерватории, педагог в Венском университете музыки и исполнительского искусства, член жюри OSAKA International Music Competition, организатор Cap Ferret Music Festival, Concours Bellan.',
-    avatarText: 'HB'
+    avatarText: 'ЭБ'
   },
   {
     id: 'yu-yamamoto',
@@ -202,17 +203,8 @@ export const JURY_MEMBERS: JuryMember[] = [
     role: 'Хореограф, танцор',
     country: 'Япония',
     city: 'Токио',
-    credentials: 'Художественный руководитель танцевальной труппы “Honey→B”, преподаватель Бродвейского танцевального центра. Обладатель New Dance Award.',
-    avatarText: 'YY'
-  },
-  {
-    id: 'dana-falkovich',
-    name: 'Дана Фалькович',
-    role: 'Заслуженная артистка Республики Беларусь',
-    country: 'Республика Беларусь',
-    city: 'Минск',
-    credentials: 'Обладатель медали Франциска Скорины, ассистент балетмейстера Государственного академического ансамбля танца Беларуси.',
-    avatarText: 'DF'
+    credentials: 'Художественный руководитель танцевальной труппы «Honey→B», преподаватель Бродвейского танцевального центра. Обладатель New Dance Award.',
+    avatarText: 'ЮЮ'
   },
   {
     id: 'thomas-kreuzberger',
@@ -221,23 +213,24 @@ export const JURY_MEMBERS: JuryMember[] = [
     country: 'Австрия',
     city: 'Вена',
     credentials: 'Член правления Венского университета музыки и исполнительского искусства. Руководитель концертного класса в частном университете музыки и искусства.',
-    avatarText: 'TK'
+    avatarText: 'ТК'
   }
 ];
 
-// Partners list verbatim from original site
+// Логотипы ниже — оригинальные материалы из раздела «Партнеры» сайта ARTCODE.
 export const PARTNERS_DATA: Partner[] = [
-  { name: 'CA Triumph', country: 'Россия / Международное', category: 'Творческое объединение «Триумф», CID UNESCO', url: 'https://triumph-org.ru/' },
-  { name: 'ARTCOMPASS', country: 'Россия / Международное', category: 'Инновационная образовательная платформа', url: 'http://artcompass.ru/' },
-  { name: 'Cap Ferret Music Festival', country: 'Франция', category: 'Европейская культурная ассоциация', url: 'https://www.capferretmusicfestival.com/' },
-  { name: 'Melos / Progetto Voce', country: 'Италия', category: 'Культурная ассоциация', url: 'http://www.ac-melos.com/about/?lang=ru' },
-  { name: 'Centro di Teatro Internazionale', country: 'Италия', category: 'Международный театр и ассоциация', url: 'https://www.centroteatro.it/' },
-  { name: 'Sommerstudio', country: 'Австрия', category: 'Культурная ассоциация', url: 'http://www.sommerstudio.org/' },
-  { name: 'ЛитРес', country: 'Россия', category: 'Информационный партнер', url: 'https://www.litres.ru' },
-  { name: 'Koekla', country: 'Нидерланды', category: 'Европейская ассоциация', url: 'https://koekla.nl/' }
+  { name: 'Кап Ферре', country: 'Франция', category: 'Музыкальный фестиваль', url: 'https://www.capferretmusicfestival.com/', logoKey: 'cap-ferret' },
+  { name: 'Европейская студия', country: 'Европа', category: 'Культурная ассоциация', url: 'https://www.ecstudios.eu/', logoKey: 'ec' },
+  { name: 'ЛитРес', country: 'Россия', category: 'Информационный партнер', url: 'https://www.litres.ru', logoKey: 'litres' },
+  { name: 'Зоммерштадиум', country: 'Австрия', category: 'Культурная ассоциация', url: 'http://www.sommerstudio.org/', logoKey: 'sommerstudio' },
+  { name: 'Академия Елены Образцовой', country: 'Россия', category: 'Образовательный партнер', url: 'http://obraztsova-academy.ru', logoKey: 'obraztsova' },
+  { name: 'АРТКОМПАС', country: 'Россия / Международное', category: 'Образовательная платформа', url: 'http://artcompass.ru/', logoKey: 'artcompass' },
+  { name: 'Мелос', country: 'Италия', category: 'Культурная ассоциация', url: 'http://www.ac-melos.com/about/?lang=ru', logoKey: 'melos' },
+  { name: 'Международный театр', country: 'Италия', category: 'Культурная ассоциация', url: 'https://www.centroteatro.it/', logoKey: 'teatro' },
+  { name: 'Кукла', country: 'Нидерланды', category: 'Культурная ассоциация', url: 'https://koekla.nl/', logoKey: 'koekla' }
 ];
 
-// Authentic winners straight from original site published results
+// Победители — данные из опубликованных итогов исходного сайта.
 export const RECENT_WINNERS: WinnerResult[] = [
   {
     id: 'w1',
@@ -246,23 +239,23 @@ export const RECENT_WINNERS: WinnerResult[] = [
     city: 'Россия',
     director: 'Половцева Ольга Владимировна',
     award: 'Диплом Лауреата ГРАН-ПРИ',
-    specialPrize: 'Грант 10 000 руб. на конкурс Творческого Объединения "Триумф" в России',
+    specialPrize: 'Грант 10 000 руб. на конкурс Творческого Объединения «Триумф» в России',
     date: 'Официальный протокол'
   },
   {
     id: 'w2',
-    competition: 'Международный заочный конкурс музыкально-художественного и народного творчества "Русская сказка"',
+    competition: 'Международный заочный конкурс музыкально-художественного и народного творчества «Русская сказка»',
     winner: 'Рыбченков Тимофей',
     city: 'Россия',
     director: 'Денисова Екатерина Ивановна',
     award: 'Лауреат',
-    specialPrize: 'Специальный приз «За выразительность исполнения» + бесплатное участие в конкурсе "Русская сказка"',
+    specialPrize: 'Специальный приз «За выразительность исполнения» + бесплатное участие в конкурсе «Русская сказка»',
     date: 'Официальный протокол'
   },
   {
     id: 'w3',
-    competition: 'XI Международная театральная премия "Триумфальная маска"',
-    winner: 'Студия современного танца "Вертикаль"',
+    competition: 'XI Международная театральная премия «Триумфальная маска»',
+    winner: 'Студия современного танца «Вертикаль»',
     city: 'Россия',
     director: 'Гуляев Олег Николаевич',
     award: 'Лауреат',
@@ -271,17 +264,17 @@ export const RECENT_WINNERS: WinnerResult[] = [
   },
   {
     id: 'w4',
-    competition: 'XIII Международный конкурс циркового искусства "New-Circus"',
-    winner: 'Волын Артём, Устинова Регина (Цирковой коллектив "Арлекин")',
+    competition: 'XIII Международный конкурс циркового искусства «Нью-Цирк»',
+    winner: 'Волын Артём, Устинова Регина (Цирковой коллектив «Арлекин»)',
     city: 'Казахстан',
     director: 'Паламарчук Ирина Матвеевна',
     award: 'Лауреат',
-    specialPrize: 'Специальный приз «Лучший дуэт» + бесплатное участие в конкурсе "Русская сказка"',
+    specialPrize: 'Специальный приз «Лучший дуэт» + бесплатное участие в конкурсе «Русская сказка»',
     date: 'Официальный протокол'
   }
 ];
 
-// Verbatim rules from the original site's "Как принять участие"
+// Правила приведены с раздела «Как принять участие» исходного сайта.
 export const PARTICIPATION_RULES = [
   {
     title: 'Требования к видеозаписи выступления',
@@ -297,8 +290,8 @@ export const PARTICIPATION_RULES = [
   {
     title: 'Где разместить конкурсный материал',
     rules: [
-      'Конкурсное выступление публикуется участником на YouTube, Vimeo, RuTube, VK Видео или облачных хранилищах (Яндекс.Диск, Google Диск, Облако Mail.ru).',
-      'Для участников в дисциплине ИЗО и ДПИ фотографии работ размещаются на Google Диске, Яндекс.Диске или Облаке Mail.ru.',
+      'Конкурсное выступление публикуется участником на Ютубе, Вимео, Рутубе, ВК Видео или облачных хранилищах (Яндекс.Диск, Гугл Диск, Облако Мейл.ру).',
+      'Для участников в дисциплине ИЗО и ДПИ фотографии работ размещаются на Гугл Диске, Яндекс.Диске или Облаке Мейл.ру.',
       'Ссылка на видеозапись или фотографии вносится в соответствующее поле онлайн-заявки.'
     ]
   },
@@ -307,7 +300,7 @@ export const PARTICIPATION_RULES = [
     rules: [
       'Подведение итогов проходит через 14 дней после окончания приёма заявок на конкретный конкурс.',
       'На 15-й день на сайте организатора triumph-org.ru и в группе vk.com/triumph_org публикуются имена обладателей Гран-при и спецпризов.',
-      'В течение 7 дней с момента публикации каждый участник получает пакет наградных документов на e-mail отдельными письмами.'
+      'В течение 7 дней с момента публикации каждый участник получает пакет наградных документов на электронную почту отдельными письмами.'
     ]
   },
   {
@@ -322,14 +315,14 @@ export const PARTICIPATION_RULES = [
 export const FAQ_DATA = [
   {
     q: 'Кто входит в организационный комитет конкурса?',
-    a: 'В организационный комитет входят Творческое объединение "Триумф" (CA Triumph) — член Международного Совета по Танцу CID UNESCO, а также Инновационная образовательная платформа ARTCOMPASS. Поддержку оказывают ассоциации Италии (Melos, Centro di Teatro Internazionale), Франции (Cap Ferret Music Festival), Австрии (Sommerstudio), Испании, Чехии и Нидерландов.'
+    a: 'В организационный комитет входят Творческое объединение «Триумф» (CA Triumph) — член Международного Совета по Танцу CID UNESCO, а также Инновационная образовательная платформа АРТКОМПАС. Поддержку оказывают ассоциации Италии, Франции, Австрии, Испании, Чехии и Нидерландов.'
   },
   {
     q: 'Что обязательно включено в пакет участника?',
     a: 'В пакет участника обязательно включены: диплом международного образца и благодарственное письмо педагогу. В большинстве проектов артисты также получают именную рецензию с рекомендациями от специалистов экспертного совета с мировым именем на официальном бланке с печатями и подписями.'
   },
   {
-    q: 'Какой призовой фонд предусмотрен в проектах ARTCODE?',
+    q: 'Какой призовой фонд предусмотрен в проектах АРТКОД?',
     a: 'Призовой фонд состоит из бесплатных поездок и грантов на очные конкурсы ТО «Триумф», ценных призов, сертификатов и подарков от международных партнеров.'
   },
   {
