@@ -1,18 +1,23 @@
 <!doctype html>
 <html lang="ru" class="scroll-smooth">
-
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>ARTCODE — Международные творческие конкурсы мирового уровня</title>    
-    <meta name="description" content="Онлайн-платформа международных конкурсов ТО «Триумф» и CID UNESCO. Экспертная оценка жюри из 12 стран, официальные дипломы для аттестации и грантовый фонд." />
+    <meta name="description" content="Онлайн-платформа международных конкурсов ТО «Триумф» и CID UNESCO. Экспертная оценка жюри, официальные дипломы для аттестации и грантовый фонд." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
+    <style>
+      /* Fallback background if Tailwind fails to load early */
+      html, body {
+        background-color: #030712 !important;
+        color: #f8fafc !important;
+      }
+    </style>
   </head>
-
   <body class="bg-slate-950 text-slate-100 antialiased selection:bg-amber-400 selection:text-slate-950">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
@@ -21,5 +26,4 @@
       src="%VITE_ANALYTICS_ENDPOINT%/umami"
       data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
   </body>
-
 </html>
