@@ -6,6 +6,7 @@ import {
   RECENT_WINNERS,
   PARTICIPATION_RULES,
   FAQ_DATA,
+  NEWS_ITEMS,
 } from '@/const';
 import { ASSETS, getDisciplineImage, getJuryImage } from '@/assets';
 import { ApplicationModal } from '@/components/ApplicationModal';
@@ -18,6 +19,7 @@ import {
   Sparkles,
   CheckCircle2,
   ChevronRight,
+  ChevronLeft,
   ShieldCheck,
   Star,
   ArrowRight,
@@ -36,6 +38,8 @@ import {
   Palette,
   Theater,
   Camera,
+  Newspaper,
+  ArrowUpRight,
 } from 'lucide-react';
 
 const disciplineIcons = {
@@ -55,11 +59,19 @@ export default function Home() {
   const [newsletterName, setNewsletterName] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeJuryIndex, setActiveJuryIndex] = useState(0);
 
   const filteredCompetitions =
     selectedDiscipline === 'all'
       ? COMPETITIONS_DATA
       : COMPETITIONS_DATA.filter((c) => c.discipline === selectedDiscipline);
+
+  const activeJuryMember = JURY_MEMBERS[activeJuryIndex];
+  const activeJuryPhoto = getJuryImage(activeJuryMember.id);
+  const showPreviousExpert = () =>
+    setActiveJuryIndex((current) => (current - 1 + JURY_MEMBERS.length) % JURY_MEMBERS.length);
+  const showNextExpert = () =>
+    setActiveJuryIndex((current) => (current + 1) % JURY_MEMBERS.length);
 
   const handleOpenModal = (compId: string) => {
     setActiveCompId(compId);
@@ -97,6 +109,7 @@ export default function Home() {
             <a href="#rules" className="hover:text-amber-400 transition-colors">Требования</a>
             <a href="#jury" className="hover:text-amber-400 transition-colors">Экспертный совет</a>
             <a href="#winners" className="hover:text-amber-400 transition-colors">Итоги</a>
+            <a href="#news" className="hover:text-amber-400 transition-colors">Новости</a>
             <a href="#partners" className="hover:text-amber-400 transition-colors">Партнеры</a>
           </nav>
 
@@ -119,6 +132,7 @@ export default function Home() {
               <a href="#rules" onClick={() => setMobileMenuOpen(false)} className="py-1 hover:text-amber-400">Требования</a>
               <a href="#jury" onClick={() => setMobileMenuOpen(false)} className="py-1 hover:text-amber-400">Экспертный совет</a>
               <a href="#winners" onClick={() => setMobileMenuOpen(false)} className="py-1 hover:text-amber-400">Итоги</a>
+              <a href="#news" onClick={() => setMobileMenuOpen(false)} className="py-1 hover:text-amber-400">Новости</a>
               <a href="#partners" onClick={() => setMobileMenuOpen(false)} className="py-1 hover:text-amber-400">Партнеры</a>
             </nav>
             <Button onClick={() => { setMobileMenuOpen(false); handleOpenModal('misteriya-vokala'); }} className="button-motion w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold py-2.5 rounded-xl">Подать заявку онлайн</Button>
@@ -293,20 +307,31 @@ export default function Home() {
       <section id="jury" className="py-20 bg-[#020617] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 blur-[120px] rounded-full" />
         <div className="container mx-auto px-4 sm:px-6 relative">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"><div><div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold mb-3">Жюри мирового значения</div><h2 className="text-3xl sm:text-4xl font-serif font-bold text-white">Экспертный совет платформы ARTCODE</h2><p className="text-slate-400 text-sm mt-2 max-w-xl">Действующие артисты и педагоги ведущих творческих вузов мира. Подбираем актуальные портреты из авторитетных источников для точной и современной подачи.</p></div><div className="text-xs text-amber-300 font-medium">Именная рецензия с рекомендациями каждому участнику</div></div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-9 gap-4"><div><div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold mb-3">Жюри мирового значения</div><h2 className="text-3xl sm:text-4xl font-serif font-bold text-white">Экспертный совет платформы ARTCODE</h2><p className="text-slate-400 text-sm mt-2 max-w-xl">Международные практики и профессиональная обратная связь — без громоздкой галереи на странице.</p></div><div className="text-xs text-amber-300 font-medium">Именная рецензия с рекомендациями каждому участнику</div></div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {JURY_MEMBERS.map((member) => {
-              const photo = getJuryImage(member.id);
-              return <div key={member.id} className="group soft-lift rounded-3xl bg-[#0f172a] border border-slate-800 overflow-hidden text-left">
-                <div className="h-60 relative overflow-hidden bg-gradient-to-b from-[#20345c] to-[#0f172a]">
-                  {photo ? <img src={photo} alt={`Фотография члена жюри ${member.name}`} className="image-zoom w-full h-full object-cover object-top" /> : <div className="w-full h-full flex items-center justify-center font-serif text-5xl text-amber-300">{member.avatarText}</div>}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-4 px-2.5 py-1 bg-[#020617]/75 backdrop-blur rounded-full text-[11px] text-amber-200 border border-amber-400/25">{member.country}, {member.city}</div>
-                </div>
-                <div className="p-5"><h3 className="text-lg font-serif font-bold text-white mb-1">{member.name}</h3><div className="text-xs text-amber-400 font-medium mb-3">{member.role}</div><p className="text-xs text-slate-300 leading-relaxed">{member.credentials}</p></div>
-              </div>;
-            })}
+          <div className="max-w-4xl mx-auto rounded-3xl bg-[#0f172a] border border-slate-800 p-4 sm:p-6 shadow-2xl shadow-black/20">
+            <div className="flex items-center justify-between gap-3 mb-5">
+              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">Эксперт {activeJuryIndex + 1} из {JURY_MEMBERS.length}</span>
+              <div className="flex items-center gap-2">
+                <button onClick={showPreviousExpert} className="button-motion h-10 w-10 rounded-xl border border-slate-700 bg-[#071126] hover:border-amber-400/70 text-white flex items-center justify-center" aria-label="Предыдущий эксперт"><ChevronLeft className="w-5 h-5" /></button>
+                <button onClick={showNextExpert} className="button-motion h-10 w-10 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 flex items-center justify-center shadow-lg shadow-amber-500/10" aria-label="Следующий эксперт"><ChevronRight className="w-5 h-5" /></button>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7 text-left motion-rise" key={activeJuryMember.id}>
+              <div className="shrink-0 mx-auto sm:mx-0 h-24 w-24 sm:h-28 sm:w-28 rounded-2xl bg-[#071126] border border-amber-400/30 overflow-hidden flex items-center justify-center shadow-lg shadow-black/30">
+                {activeJuryPhoto ? <img src={activeJuryPhoto} alt={`Портрет эксперта ${activeJuryMember.name}`} className="h-full w-full object-contain object-center" /> : <span className="font-serif text-3xl text-amber-300">{activeJuryMember.avatarText}</span>}
+              </div>
+              <div className="min-w-0 flex-1 text-center sm:text-left">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2"><h3 className="text-xl sm:text-2xl font-serif font-bold text-white">{activeJuryMember.name}</h3><span className="text-[11px] mx-auto sm:mx-0 w-fit px-2.5 py-1 rounded-full bg-[#071126] border border-slate-700 text-amber-200">{activeJuryMember.country}, {activeJuryMember.city}</span></div>
+                <p className="text-sm text-amber-400 font-medium mb-3">{activeJuryMember.role}</p>
+                <p className="text-xs sm:text-sm leading-relaxed text-slate-300 max-w-2xl">{activeJuryMember.credentials}</p>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-center gap-1.5" aria-label="Выбор эксперта">
+              {JURY_MEMBERS.map((member, index) => <button key={member.id} onClick={() => setActiveJuryIndex(index)} className={`h-1.5 rounded-full transition-all ${index === activeJuryIndex ? 'w-7 bg-amber-400' : 'w-1.5 bg-slate-600 hover:bg-slate-400'}`} aria-label={`Показать эксперта ${member.name}`} />)}
+            </div>
           </div>
         </div>
       </section>
@@ -317,13 +342,22 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="news" className="py-20 bg-[#020617] border-b border-slate-800">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10"><div><div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold mb-3"><Newspaper className="w-3.5 h-3.5" /> Новости ARTCODE</div><h2 className="text-3xl sm:text-4xl font-serif font-bold text-white">Новости, результаты и возможности</h2><p className="text-slate-400 text-sm mt-2 max-w-2xl">Короткая лента материалов из новостного раздела исходного сайта: важные результаты, призовой фонд и новости проектов.</p></div><a href="https://my-artcode.com/" target="_blank" rel="noopener noreferrer" className="button-motion w-fit inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-amber-500/30 text-amber-300 hover:bg-amber-500/10 text-xs font-semibold">Архив новостей <ArrowUpRight className="w-4 h-4" /></a></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+            {NEWS_ITEMS.map((item) => <article key={item.id} className="soft-lift rounded-2xl bg-[#0f172a] border border-slate-800 p-5 text-left flex flex-col"><div className="flex items-center justify-between gap-3 mb-4"><span className="text-[10px] uppercase tracking-[0.12em] text-amber-400 font-bold">{item.category}</span>{item.period && <span className="text-[10px] text-slate-500 whitespace-nowrap">{item.period}</span>}</div><h3 className="text-lg font-serif font-bold text-white leading-snug mb-3">{item.title}</h3><p className="text-xs text-slate-300 leading-relaxed">{item.summary}</p></article>)}
+          </div>
+        </div>
+      </section>
+
       <section id="partners" className="py-20 bg-[#020617]">
         <div className="container mx-auto px-4 sm:px-6"><div className="text-center max-w-xl mx-auto mb-12"><div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold mb-3">Партнеры конкурса</div><h2 className="text-3xl font-serif font-bold text-white">Культурные ассоциации и организации</h2><p className="text-slate-400 text-xs sm:text-sm mt-2">Названия партнеров вынесены отдельной контрастной строкой: их легко прочесть даже на светлых или минималистичных логотипах.</p></div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">{PARTNERS_DATA.map((p) => <a key={p.logoKey} href={p.url} target="_blank" rel="noopener noreferrer" aria-label={`Открыть сайт партнера: ${p.name}`} className="group soft-lift min-h-52 rounded-2xl bg-[#101a31] border border-slate-700/80 flex flex-col overflow-hidden text-center shadow-lg shadow-black/20"><div className="px-3 pt-3 text-[11px] sm:text-xs font-bold tracking-wide uppercase text-white min-h-10 flex items-center justify-center leading-tight">{p.name}</div><div className="mx-3 h-24 min-h-24 rounded-xl bg-white flex items-center justify-center p-3 border border-slate-200 shadow-inner"><img src={ASSETS.partners[p.logoKey]} alt={`Официальный логотип партнера: ${p.name}`} className="max-w-full max-h-full object-contain image-zoom" /></div><div className="p-3 pt-2"><div className="text-[10px] text-slate-300 leading-snug">{p.country} • {p.category}</div><div className="mt-1 text-[10px] font-semibold text-amber-300 opacity-0 group-hover:opacity-100 transition-opacity">Открыть сайт &rarr;</div></div></a>)}</div>
         </div>
       </section>
 
-      <section id="faq" className="py-20 bg-[#080e22] border-t border-slate-800"><div className="container mx-auto px-4 sm:px-6 max-w-3xl"><div className="text-center mb-12"><h2 className="text-3xl font-serif font-bold text-white">Часто задаваемые вопросы</h2><p className="text-slate-400 text-sm mt-2">Информация по регламенту, судейству и выдаче дипломов</p></div><div className="space-y-4">{FAQ_DATA.map((item, idx) => <div key={idx} className="soft-lift p-5 rounded-2xl bg-[#0f172a] border border-slate-800 text-left"><h3 className="text-base font-serif font-semibold text-white flex items-center gap-2 mb-2"><HelpCircle className="w-4 h-4 text-amber-400 shrink-0" />{item.q}</h3><p className="text-xs sm:text-sm text-slate-300 leading-relaxed pl-6">{item.a}</p></div>)}</div></div></section>
+      <section id="faq" className="py-20 bg-[#080e22] border-t border-slate-800"><div className="container mx-auto px-4 sm:px-6 max-w-3xl"><div className="text-center mb-10"><h2 className="text-3xl font-serif font-bold text-white">Часто задаваемые вопросы</h2><p className="text-slate-400 text-sm mt-2">Нажмите на вопрос, чтобы открыть ответ</p></div><div className="space-y-3">{FAQ_DATA.map((item, idx) => <details key={idx} className="group rounded-2xl bg-[#0f172a] border border-slate-800 text-left open:border-amber-400/30 transition-colors"><summary className="list-none w-full flex items-center gap-3 p-5 text-left cursor-pointer"><HelpCircle className="w-4 h-4 text-amber-400 shrink-0" /><h3 className="flex-1 text-base font-serif font-semibold text-white">{item.q}</h3><ChevronRight className="w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 group-open:rotate-90" /></summary><div className="px-5 pb-5 pl-12 text-xs sm:text-sm text-slate-300 leading-relaxed">{item.a}</div></details>)}</div></div></section>
 
       <section className="py-16 bg-[#020617] border-t border-slate-800"><div className="container mx-auto px-4 sm:px-6 max-w-2xl text-center"><div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 text-xs font-semibold mb-4"><Mail className="w-3.5 h-3.5" /> Подписка на рассылку</div><h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">Будьте в курсе новых конкурсов и грантов</h2><p className="text-slate-300 text-xs sm:text-sm mb-6 max-w-md mx-auto">Подпишитесь и будьте в курсе новых конкурсов, вручений специальных призов и розыгрышей денежных грантов.</p>
         {!newsletterSubscribed ? <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto"><Input type="text" placeholder="Имя" value={newsletterName} onChange={(e) => setNewsletterName(e.target.value)} className="bg-[#0f172a] border-slate-700 text-white rounded-xl text-sm" /><Input type="email" required placeholder="Электронная почта *" value={newsletterEmail} onChange={(e) => setNewsletterEmail(e.target.value)} className="bg-[#0f172a] border-slate-700 text-white rounded-xl text-sm" /><Button type="submit" className="button-motion bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-6 py-2 rounded-xl text-sm shrink-0">Подписаться</Button></form> : <div className="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-300 text-sm max-w-md mx-auto flex items-center justify-center gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-400" /><span>Вы успешно подписаны на новости ARTCODE!</span></div>}
