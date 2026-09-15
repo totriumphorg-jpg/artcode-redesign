@@ -1,8 +1,10 @@
 export const ASSETS = {
   hero: '/manus-storage/hero-creative-stage_49817e88.jpg',
+  heroMobile: '/manus-storage/hero-creative-stage-mobile_91330abe.jpg',
   triumphLogo: '/manus-storage/triumph-logo_e0f69ff5.svg',
   disciplines: {
     vocal: '/manus-storage/vocal-competition_13643ebd.jpg',
+    folkVocal: '/manus-storage/folk-academic-vocal_b71b2f15.jpg',
     choreography: '/manus-storage/dance-competition_fbb7c499.jpg',
     theater: '/manus-storage/theatre-competition_ed2ddf2c.jpg',
     instrumental: '/manus-storage/instrumental-competition_c03199fa.jpg',

@@ -126,10 +126,14 @@ export default function Home() {
         )}
       </header>
 
-      <section className="relative min-h-[720px] sm:min-h-[760px] flex items-center overflow-hidden bg-[#020617]">
-        <img src={ASSETS.hero} alt="Танцовщица на театральной сцене" className="absolute inset-0 w-full h-full object-cover object-[72%_center] sm:object-center opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/90 via-[#020617]/60 to-[#020617]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/82 via-[#020617]/50 to-[#020617]/24" />
+      <section className="relative min-h-[760px] sm:min-h-[760px] flex flex-col justify-center overflow-hidden bg-[#020617] pt-10 pb-12">
+        <picture>
+          <source media="(max-width: 639px)" srcSet={ASSETS.heroMobile} />
+          <img src={ASSETS.hero} alt="Танцовщица на театральной сцене" className="absolute inset-0 w-full h-full object-cover object-[center_35%] sm:object-center opacity-70 sm:opacity-60 pointer-events-none" />
+        </picture>
+        {/* Gentle readable backdrop on mobile so both the dancing figure and text read crisp */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/85 via-[#020617]/55 to-[#020617]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/70 via-transparent to-[#020617]/50 hidden sm:block" />
         <div className="absolute top-[14%] right-[12%] h-56 w-56 rounded-full bg-amber-400/15 blur-[100px] motion-ambient" />
         <div className="absolute bottom-[15%] left-[12%] h-64 w-64 rounded-full bg-fuchsia-500/10 blur-[110px] motion-ambient" />
 
@@ -202,14 +206,24 @@ export default function Home() {
               const Icon = disciplineIcons[comp.discipline];
               return (
                 <div key={comp.id} className="group soft-lift relative flex flex-col justify-between rounded-3xl bg-[#0f172a] border border-slate-800 overflow-hidden">
-                  <div className="h-44 relative overflow-hidden">
-                    <img src={getDisciplineImage(comp.discipline)} alt={`Направление конкурса: ${comp.disciplineLabel}`} className="image-zoom w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/15 to-transparent" />
-                    <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2">
-                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#0f172a]/85 text-amber-300 border border-amber-500/30 backdrop-blur-sm">{comp.disciplineLabel}</span>
-                      <span className="px-2.5 py-1 rounded-full text-[11px] bg-[#0f172a]/85 text-white border border-white/15 backdrop-blur-sm">{comp.badge}</span>
-                    </div>
-                    <div className="absolute bottom-4 left-5 flex items-center gap-2 text-slate-100 text-xs font-medium"><Icon className="w-4 h-4 text-amber-400" /> {comp.deadline}</div>
+                  {/* Top tags row placed cleanly outside the photo so badges never cover faces */}
+                  <div className="p-4 pb-3 flex items-center justify-between gap-2 border-b border-slate-800/80 bg-[#0b1329]">
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30">{comp.disciplineLabel}</span>
+                    <span className="px-2.5 py-1 rounded-full text-[11px] bg-slate-800 text-slate-200 border border-slate-700">{comp.badge}</span>
+                  </div>
+
+                  {/* Dedicated image frame with natural aspect ratio; no harsh cropping */}
+                  <div className="h-64 sm:h-72 w-full relative overflow-hidden bg-[#070e20] flex items-center justify-center">
+                    <img
+                      src={comp.id === 'misteriya-vokala' ? ASSETS.disciplines.folkVocal : getDisciplineImage(comp.discipline)}
+                      alt={`Направление конкурса: ${comp.disciplineLabel}`}
+                      className="w-full h-full object-cover object-top sm:object-center transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0f172a] to-transparent pointer-events-none" />
+                  </div>
+
+                  <div className="px-6 pt-3 flex items-center gap-2 text-slate-300 text-xs font-medium border-b border-slate-800/60 pb-3">
+                    <Icon className="w-4 h-4 text-amber-400" /> <span>{comp.deadline}</span>
                   </div>
 
                   <div className="p-6 sm:p-7 pt-3 flex flex-col flex-1">
