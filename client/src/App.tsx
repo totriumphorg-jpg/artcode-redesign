@@ -8,10 +8,12 @@ import Home from "./pages/Home";
 
 
 function Router() {
+  const pageBase = import.meta.env.BASE_URL.replace(/\/$/, "");
+
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
+      <Route path={`${pageBase}/`} component={Home} />
+      <Route path={`${pageBase}/404`} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>

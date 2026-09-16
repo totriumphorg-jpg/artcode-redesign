@@ -5,8 +5,9 @@ import path from 'node:path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // Relative paths work on both the GitHub Pages project URL and a future custom domain.
-  base: './',
+  // The GitHub Pages project URL is served beneath the repository name.
+  // Change this to '/' when a custom domain such as my-artcode.com is connected.
+  base: '/artcode-redesign/',
   plugins: [react(), tailwindcss(), jsxLocPlugin()],
   resolve: {
     alias: {
