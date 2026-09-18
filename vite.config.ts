@@ -153,10 +153,8 @@ function vitePluginManusDebugCollector(): Plugin {
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
 
 export default defineConfig({
-  // The GitHub Pages project URL is served beneath the repository name.
-  // Change this to '/' when a custom domain such as my-artcode.com is connected.
-  base: '/artcode-redesign/',
-  plugins: [react(), tailwindcss(), jsxLocPlugin()],
+  base: '/',
+  plugins,
   resolve: {
     alias: {
       '@': path.resolve(import.meta.dirname, 'client', 'src'),

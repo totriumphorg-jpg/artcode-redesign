@@ -1,6 +1,9 @@
-import { describe, expect, it } from "vitest";
+import { afterAll, describe, expect, it } from "vitest";
 import { appRouter } from "./routers";
 import type { TrpcContext } from "./_core/context";
+import { getDb } from "./db";
+import { applications, paymentTransactions } from "../drizzle/schema";
+import { eq } from "drizzle-orm";
 
 function createPublicContext(): TrpcContext {
   return {
@@ -49,7 +52,6 @@ describe("ARTCODE Platform Public and Admin APIs", () => {
     const first = contests[0];
     expect(first.title).toBeDefined();
     expect(first.slug).toBeDefined();
-
   });
 
   it("fetches individual contest with complete regulation sections", async () => {
@@ -112,5 +114,13 @@ describe("ARTCODE Platform Public and Admin APIs", () => {
     expect(csvData.csv).toBeDefined();
     expect(csvData.filename).toContain("misteriya-zvuka");
     expect(csvData.csv).toContain('"ID";"Дата";"Конкурс";"Номинация";"Участник / Коллектив"');
+  });
+
+  afterAll(async () => {
+    const db = await getDb();
+    if (db) {
+      await db.delete(applications).where(eq(applications.email, "artist.test@my-artcode.com"));
+      await db.delete(paymentTransactions).where(eq(paymentTransactions.clientEmail, "artist.test@my-artcode.com"));
+    }
   });
 });

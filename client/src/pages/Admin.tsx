@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   Copy,
   Download,
+  Edit3,
   FileSpreadsheet,
   FileText,
   Filter,
@@ -40,6 +41,15 @@ export default function Admin() {
   const [duplicateTitle, setDuplicateTitle] = useState('');
   const [duplicateSlug, setDuplicateSlug] = useState('');
   const [showDuplicateModal, setShowDuplicateModal] = useState<number | null>(null);
+  const [editingContestModal, setEditingContestModal] = useState<{
+    id: number;
+    title: string;
+    receptionPeriod: string;
+    resultsPeriod: string;
+    feeAmount: number;
+    juryNames: string;
+    description: string;
+  } | null>(null);
 
   // Regulations state
   const [regContestSlug, setRegContestSlug] = useState<string>('misteriya-zvuka');
@@ -79,6 +89,15 @@ export default function Admin() {
       refetchContests();
     },
     onError: (err) => toast.error(`Ошибка при копировании: ${err.message}`),
+  });
+
+  const updateContestMutation = trpc.contests.update.useMutation({
+    onSuccess: () => {
+      toast.success('Параметры конкурса успешно обновлены');
+      setEditingContestModal(null);
+      refetchContests();
+    },
+    onError: (err) => toast.error(`Ошибка при сохранении: ${err.message}`),
   });
 
   const saveRegMutation = trpc.contests.saveRegulation.useMutation({
@@ -430,6 +449,25 @@ export default function Admin() {
                   </Link>
 
                   <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() =>
+                      setEditingContestModal({
+                        id: contest.id,
+                        title: contest.title,
+                        receptionPeriod: contest.receptionPeriod,
+                        resultsPeriod: contest.resultsPeriod,
+                        feeAmount: contest.feeAmount,
+                        juryNames: contest.juryNames,
+                        description: contest.description,
+                      })
+                    }
+                    className="text-xs border-slate-300 text-slate-700 hover:bg-slate-50 flex items-center gap-1"
+                  >
+                    <Edit3 className="w-3.5 h-3.5" /> Изменить
+                  </Button>
+
+                  <Button
                     size="sm"
                     onClick={() => {
                       setShowDuplicateModal(contest.id);
@@ -496,6 +534,107 @@ export default function Admin() {
                     className="bg-blue-600 hover:bg-blue-700 text-white font-bold"
                   >
                     {duplicateMutation.isPending ? 'Создание...' : 'Создать проект'}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Edit contest modal */}
+          {editingContestModal !== null && (
+            <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-white rounded-2xl max-w-xl w-full p-6 shadow-xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Редактировать конкурс</h3>
+                <p className="text-xs text-slate-600 mb-4">
+                  Измените название, сроки проведения, размер организационного взноса, состав экспертного совета или описание.
+                </p>
+
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Название конкурса:</label>
+                    <Input
+                      value={editingContestModal.title}
+                      onChange={(e) => setEditingContestModal({ ...editingContestModal, title: e.target.value })}
+                      className="border-slate-300 text-sm"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-xs font-bold text-slate-700 block mb-1">Период приема заявок:</label>
+                      <Input
+                        value={editingContestModal.receptionPeriod}
+                        onChange={(e) => setEditingContestModal({ ...editingContestModal, receptionPeriod: e.target.value })}
+                        className="border-slate-300 text-xs"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-bold text-slate-700 block mb-1">Срок подведения итогов:</label>
+                      <Input
+                        value={editingContestModal.resultsPeriod}
+                        onChange={(e) => setEditingContestModal({ ...editingContestModal, resultsPeriod: e.target.value })}
+                        className="border-slate-300 text-xs"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Организационный взнос (руб.):</label>
+                    <Input
+                      type="number"
+                      value={editingContestModal.feeAmount}
+                      onChange={(e) => setEditingContestModal({ ...editingContestModal, feeAmount: Number(e.target.value) || 0 })}
+                      className="border-slate-300 text-sm"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Три члена жюри конкурса:</label>
+                    <Input
+                      value={editingContestModal.juryNames}
+                      onChange={(e) => setEditingContestModal({ ...editingContestModal, juryNames: e.target.value })}
+                      className="border-slate-300 text-sm"
+                    />
+                    <span className="text-[11px] text-slate-500 mt-0.5 block">
+                      Укажите трех экспертов через запятую, например: Сильвио Занон (Италия), Альберт Жалилов (Россия), Элен Бержи (Франция)
+                    </span>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Краткое описание:</label>
+                    <Textarea
+                      rows={3}
+                      value={editingContestModal.description}
+                      onChange={(e) => setEditingContestModal({ ...editingContestModal, description: e.target.value })}
+                      className="border-slate-300 text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+                  <Button variant="outline" onClick={() => setEditingContestModal(null)}>
+                    Отмена
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      if (!editingContestModal.title || !editingContestModal.juryNames) {
+                        toast.error('Заполните обязательные поля');
+                        return;
+                      }
+                      updateContestMutation.mutate({
+                        id: editingContestModal.id,
+                        title: editingContestModal.title,
+                        receptionPeriod: editingContestModal.receptionPeriod,
+                        resultsPeriod: editingContestModal.resultsPeriod,
+                        feeAmount: editingContestModal.feeAmount,
+                        juryNames: editingContestModal.juryNames,
+                        description: editingContestModal.description,
+                      });
+                    }}
+                    disabled={updateContestMutation.isPending}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold"
+                  >
+                    {updateContestMutation.isPending ? 'Сохранение...' : 'Сохранить изменения'}
                   </Button>
                 </div>
               </div>
