@@ -4,7 +4,6 @@ import react from "@vitejs/plugin-react";
 import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
-import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -150,7 +149,12 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
+// The server-side Vite bridge imports this configuration as an object. Do not
+// convert it into a callback: that would cause Vite to lose the client root
+// and return index.html for `/src/main.tsx`, producing `Unexpected token '<'`.
+// The editor runtime plugin is intentionally not included because it installs
+// a second content root when `from_webdev=1` is present.
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusDebugCollector()];
 
 export default defineConfig({
   base: '/',

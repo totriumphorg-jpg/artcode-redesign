@@ -181,7 +181,7 @@ export default function ContestPage() {
                   <div key={index} className="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col items-center text-center">
                     <div className="w-24 h-24 rounded-full overflow-hidden bg-slate-200 mb-4 border-2 border-white shadow-sm flex items-center justify-center">
                       {imageSrc ? (
-                        <img src={imageSrc} alt={name} className="w-full h-full object-cover object-top" />
+                        <img src={imageSrc} alt={name} className="block w-full h-full object-contain p-1" />
                       ) : (
                         <span className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-slate-200 text-blue-800 font-extrabold text-2xl">
                           {initials}

@@ -211,11 +211,11 @@ export default function Home() {
 
             {/* Visual Stage Banner */}
             <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-200">
+              <div className="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-950">
                 <img
                   src={ASSETS.hero}
                   alt="Международные творческие конкурсы ARTCODE"
-                  className="w-full h-[360px] sm:h-[440px] object-cover object-center"
+                  className="block w-full h-auto aspect-video object-contain"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
                   <span className="text-xs uppercase tracking-wider font-bold text-amber-400">
@@ -286,7 +286,7 @@ export default function Home() {
                   className="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all duration-300 flex flex-col overflow-hidden group"
                 >
                   {/* Image container — fully clickable to contest page */}
-                  <Link href={`/contest/${comp.slug}`} className="block relative aspect-[16/10] overflow-hidden bg-slate-100">
+                  <Link href={`/contest/${comp.slug}`} className="block relative aspect-square overflow-hidden bg-slate-950 p-1.5">
                     <img
                       src={imageSrc}
                       alt={comp.title}
@@ -296,7 +296,7 @@ export default function Home() {
                           target.src = ASSETS.disciplines.vocal;
                         }
                       }}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="block w-full h-full object-contain transition-opacity duration-200"
                     />
                     <div className="absolute top-3 left-3 flex gap-2">
                       <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-900/80 backdrop-blur-md text-white">
@@ -483,7 +483,7 @@ export default function Home() {
                     <img
                       src={imageSrc}
                       alt={currentJury.name}
-                      className="w-full h-full object-cover object-top"
+                      className="block w-full h-full object-contain p-1.5"
                     />
                   </div>
 
