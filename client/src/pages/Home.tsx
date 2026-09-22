@@ -273,7 +273,9 @@ export default function Home() {
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCompetitions.map((comp) => {
-              const imageSrc = getDisciplineImage(comp.discipline as any);
+              const imageSrc =
+                (comp as any).cardImage ||
+                (comp.slug === 'misteriya-zvuka' ? ASSETS.disciplines.folkVocal : getDisciplineImage(comp.discipline as any));
               const juryThree = (comp as any).juryNames
                 ? String((comp as any).juryNames).split(',').slice(0, 3).map((j: string) => j.trim())
                 : ((comp as any).juryList || []);
@@ -288,6 +290,12 @@ export default function Home() {
                     <img
                       src={imageSrc}
                       alt={comp.title}
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (target.src !== ASSETS.disciplines.vocal) {
+                          target.src = ASSETS.disciplines.vocal;
+                        }
+                      }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-3 left-3 flex gap-2">

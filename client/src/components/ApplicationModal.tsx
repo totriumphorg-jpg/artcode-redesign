@@ -114,10 +114,10 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && resetAndClose()}>
-      <DialogContent className="w-[calc(100vw-1.5rem)] max-w-2xl bg-white border-slate-200 text-slate-900 max-h-[90vh] overflow-x-hidden overflow-y-auto overscroll-contain p-5 sm:p-7 rounded-2xl shadow-xl">
+      <DialogContent className="grid-cols-1 min-w-0 w-[calc(100vw-1.5rem)] max-w-2xl bg-white border-slate-200 text-slate-900 max-h-[90vh] overflow-x-hidden overflow-y-auto overscroll-contain p-5 sm:p-7 rounded-2xl shadow-xl">
         {!submissionResult ? (
           <>
-            <DialogHeader className="pr-6">
+            <DialogHeader className="min-w-0 pr-6">
               <div className="flex items-center gap-2 mb-1">
                 <span className="px-2.5 py-0.5 text-xs rounded-full bg-blue-100 text-blue-800 font-bold flex items-center gap-1">
                   <Sparkles className="w-3 h-3" /> Онлайн-заявка
@@ -132,7 +132,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               </DialogDescription>
             </DialogHeader>
 
-            <form onSubmit={handleSubmit} className="space-y-4 mt-3">
+            <form onSubmit={handleSubmit} className="w-full min-w-0 space-y-4 mt-3">
               {/* Contest selector */}
               <div className="space-y-1.5">
                 <Label htmlFor="contest-select" className="text-xs font-bold text-slate-700">
@@ -158,7 +158,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               </div>
 
               {/* Participant & Collective */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <Label htmlFor="participant" className="text-xs font-bold text-slate-700">
                     ФИО участника <span className="text-rose-500">*</span>
@@ -187,7 +187,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               </div>
 
               {/* Nomination & Performance */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <Label htmlFor="nomination" className="text-xs font-bold text-slate-700">
                     Номинация <span className="text-rose-500">*</span>
@@ -217,7 +217,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               </div>
 
               {/* Age category & City */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <Label htmlFor="age" className="text-xs font-bold text-slate-700">
                     Возрастная категория <span className="text-rose-500">*</span>
@@ -271,7 +271,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               </div>
 
               {/* Teacher and Institution */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <Label htmlFor="teacher" className="text-xs font-bold text-slate-700">
                     ФИО педагога / руководителя
@@ -299,7 +299,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               </div>
 
               {/* Email & Phone */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <Label htmlFor="email" className="text-xs font-bold text-slate-700">
                     Электронная почта для наградного пакета <span className="text-rose-500">*</span>
