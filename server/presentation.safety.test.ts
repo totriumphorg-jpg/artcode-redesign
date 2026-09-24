@@ -36,12 +36,16 @@ describe("public presentation safety", () => {
     }
   });
 
-  it("uses a trimmed GitHub Pages router base and generates an SPA fallback", () => {
+  it("uses a trimmed GitHub Pages router base and generates static entry points", () => {
     const app = readProjectFile("client/src/App.tsx");
     const packageJson = readProjectFile("package.json");
+    const routeGenerator = readProjectFile("scripts/generate-github-pages-routes.mjs");
 
     expect(app).toContain('import.meta.env.BASE_URL.replace(/\\/+$/, "")');
-    expect(packageJson).toContain('cp dist/public/index.html dist/public/404.html');
+    expect(packageJson).toContain('node scripts/generate-github-pages-routes.mjs');
+    expect(routeGenerator).toContain('"contest/misteriya-zvuka"');
+    expect(routeGenerator).toContain('"report/itogi-artcode-12-01-26-01"');
+    expect(routeGenerator).toContain('"404.html"');
   });
 
   it("renders static contest and report data when GitHub Pages has no server API", () => {
