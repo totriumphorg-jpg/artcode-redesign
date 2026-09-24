@@ -25,11 +25,14 @@ describe("public presentation safety", () => {
     expect(contestPage).not.toContain("object-cover");
   });
 
-  it("keeps visual asset URLs on the production storage proxy", () => {
+  it("resolves visual assets to portable public images bundled in client/public/images", () => {
     const assets = readProjectFile("client/src/assets.ts");
-    const assetUrls = [...assets.matchAll(/'([^']+\.(?:jpg|png|svg))'/g)].map((match) => match[1]);
+    const assetFiles = [...assets.matchAll(/images\/([^`'"]+\.(?:jpg|png|svg))/g)].map((m) => m[1]);
 
-    expect(assetUrls.length).toBeGreaterThan(10);
-    expect(assetUrls.every((url) => url.startsWith("/manus-storage/"))).toBe(true);
+    expect(assetFiles.length).toBeGreaterThan(15);
+    for (const filename of assetFiles) {
+      const exists = fs.existsSync(path.join(projectRoot, "client/public/images", filename));
+      expect(exists).toBe(true);
+    }
   });
 });

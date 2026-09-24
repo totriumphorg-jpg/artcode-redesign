@@ -154,7 +154,13 @@ function vitePluginManusDebugCollector(): Plugin {
 // and return index.html for `/src/main.tsx`, producing `Unexpected token '<'`.
 // The editor runtime plugin is intentionally not included because it installs
 // a second content root when `from_webdev=1` is present.
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusDebugCollector()];
+const isProd = process.env.NODE_ENV === "production";
+const plugins = [
+  react(),
+  tailwindcss(),
+  jsxLocPlugin(),
+  ...(isProd ? [] : [vitePluginManusDebugCollector()]),
+];
 
 export default defineConfig({
   base: '/',

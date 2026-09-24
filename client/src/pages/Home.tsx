@@ -273,9 +273,14 @@ export default function Home() {
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCompetitions.map((comp) => {
+              const base = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '') + '/';
+              const rawImage = (comp as any).cardImage;
               const imageSrc =
-                (comp as any).cardImage ||
-                (comp.slug === 'misteriya-zvuka' ? ASSETS.disciplines.folkVocal : getDisciplineImage(comp.discipline as any));
+                comp.slug === 'misteriya-zvuka'
+                  ? ASSETS.disciplines.folkVocal
+                  : rawImage && typeof rawImage === 'string' && !rawImage.includes('manus-storage')
+                    ? (rawImage.startsWith('http') ? rawImage : `${base}${rawImage.replace(/^\/+/, '')}`)
+                    : getDisciplineImage(comp.discipline as any);
               const juryThree = (comp as any).juryNames
                 ? String((comp as any).juryNames).split(',').slice(0, 3).map((j: string) => j.trim())
                 : ((comp as any).juryList || []);
