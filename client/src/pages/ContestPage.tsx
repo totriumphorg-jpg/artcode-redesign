@@ -27,6 +27,44 @@ export default function ContestPage() {
   const [openSection, setOpenSection] = useState<string>('goals');
   const isStaticGithubPages = typeof window !== 'undefined' && window.location.hostname.endsWith('github.io');
   const staticContest = COMPETITIONS_DATA.find((item) => item.slug === slug);
+  const staticRegulations = staticContest ? [
+    {
+      id: `${staticContest.slug}-about`,
+      sectionKey: 'about',
+      title: 'О конкурсе',
+      content: staticContest.description,
+    },
+    {
+      id: `${staticContest.slug}-nominations`,
+      sectionKey: 'nominations',
+      title: 'Номинации и направления',
+      content: staticContest.features[0],
+    },
+    {
+      id: `${staticContest.slug}-awards`,
+      sectionKey: 'awards',
+      title: 'Наградной пакет',
+      content: staticContest.features.slice(1).join('. '),
+    },
+    {
+      id: `${staticContest.slug}-timeline`,
+      sectionKey: 'timeline',
+      title: 'Сроки проведения',
+      content: `${staticContest.deadline}. ${staticContest.resultsDate}.`,
+    },
+    {
+      id: `${staticContest.slug}-jury`,
+      sectionKey: 'jury',
+      title: 'Экспертный совет',
+      content: staticContest.juryList.join(', '),
+    },
+    {
+      id: `${staticContest.slug}-fee`,
+      sectionKey: 'fee',
+      title: 'Финансовые условия',
+      content: `Организационный взнос — ${staticContest.feeAmount} руб. за конкурсный номер.`,
+    },
+  ] : [];
 
   const { data: dbContest, isLoading, error } = trpc.contests.bySlug.useQuery({ slug }, {
     enabled: Boolean(slug) && !isStaticGithubPages,
@@ -35,8 +73,8 @@ export default function ContestPage() {
     ...staticContest,
     receptionPeriod: staticContest.deadline,
     resultsPeriod: staticContest.resultsDate,
-    juryNames: staticContest.juryList.join(', '),
-    regulations: [],
+    juryNames: staticContest.juryList.join(' | '),
+    regulations: staticRegulations,
   } : undefined)) as any;
 
   if (isLoading && !staticContest) {
@@ -65,7 +103,9 @@ export default function ContestPage() {
     );
   }
 
-  const juryList: string[] = contest.juryNames ? contest.juryNames.split(',').map((j: string) => j.trim()) : [];
+  const juryList: string[] = contest.juryNames
+    ? contest.juryNames.split(contest.juryNames.includes(' | ') ? ' | ' : ',').map((j: string) => j.trim())
+    : [];
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">

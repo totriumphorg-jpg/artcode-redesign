@@ -52,5 +52,7 @@ describe("public presentation safety", () => {
     expect(reportPage).toContain("REPORTS_DATA");
     expect(contestPage).toContain("hostname.endsWith('github.io')");
     expect(reportPage).toContain("hostname.endsWith('github.io')");
+    expect(contestPage).toContain("staticRegulations");
+    expect(contestPage).toContain("juryNames: staticContest.juryList.join(' | ')");
   });
 });
