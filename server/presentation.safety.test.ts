@@ -43,4 +43,14 @@ describe("public presentation safety", () => {
     expect(app).toContain('import.meta.env.BASE_URL.replace(/\\/+$/, "")');
     expect(packageJson).toContain('cp dist/public/index.html dist/public/404.html');
   });
+
+  it("renders static contest and report data when GitHub Pages has no server API", () => {
+    const contestPage = readProjectFile("client/src/pages/ContestPage.tsx");
+    const reportPage = readProjectFile("client/src/pages/ReportPage.tsx");
+
+    expect(contestPage).toContain("COMPETITIONS_DATA");
+    expect(reportPage).toContain("REPORTS_DATA");
+    expect(contestPage).toContain("hostname.endsWith('github.io')");
+    expect(reportPage).toContain("hostname.endsWith('github.io')");
+  });
 });

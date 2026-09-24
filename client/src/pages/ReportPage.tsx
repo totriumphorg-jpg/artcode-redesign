@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRoute, Link } from 'wouter';
 import { trpc } from '@/lib/trpc';
+import { REPORTS_DATA } from '@/const';
 import { Button } from '@/components/ui/button';
 import {
   ArrowLeft,
@@ -18,12 +19,15 @@ import { Streamdown } from 'streamdown';
 export default function ReportPage() {
   const [, params] = useRoute('/report/:slug');
   const slug = params?.slug || '';
+  const isStaticGithubPages = typeof window !== 'undefined' && window.location.hostname.endsWith('github.io');
+  const staticReport = REPORTS_DATA.find((item) => item.slug === slug);
 
-  const { data: report, isLoading, error } = trpc.reports.bySlug.useQuery({ slug }, {
-    enabled: Boolean(slug),
+  const { data: dbReport, isLoading, error } = trpc.reports.bySlug.useQuery({ slug }, {
+    enabled: Boolean(slug) && !isStaticGithubPages,
   });
+  const report = (dbReport || (staticReport ? { ...staticReport, protocolUrl: undefined } : undefined)) as any;
 
-  if (isLoading) {
+  if (isLoading && !staticReport) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">

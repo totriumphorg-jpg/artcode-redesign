@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRoute, Link } from 'wouter';
 import { trpc } from '@/lib/trpc';
 import { ASSETS, getJuryImage } from '@/assets';
-import { JURY_MEMBERS } from '@/const';
+import { COMPETITIONS_DATA, JURY_MEMBERS } from '@/const';
 import { ApplicationModal } from '@/components/ApplicationModal';
 import { Button } from '@/components/ui/button';
 import {
@@ -25,12 +25,21 @@ export default function ContestPage() {
   const slug = params?.slug || '';
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string>('goals');
+  const isStaticGithubPages = typeof window !== 'undefined' && window.location.hostname.endsWith('github.io');
+  const staticContest = COMPETITIONS_DATA.find((item) => item.slug === slug);
 
-  const { data: contest, isLoading, error } = trpc.contests.bySlug.useQuery({ slug }, {
-    enabled: Boolean(slug),
+  const { data: dbContest, isLoading, error } = trpc.contests.bySlug.useQuery({ slug }, {
+    enabled: Boolean(slug) && !isStaticGithubPages,
   });
+  const contest = (dbContest || (staticContest ? {
+    ...staticContest,
+    receptionPeriod: staticContest.deadline,
+    resultsPeriod: staticContest.resultsDate,
+    juryNames: staticContest.juryList.join(', '),
+    regulations: [],
+  } : undefined)) as any;
 
-  if (isLoading) {
+  if (isLoading && !staticContest) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
@@ -56,7 +65,7 @@ export default function ContestPage() {
     );
   }
 
-  const juryList = contest.juryNames ? contest.juryNames.split(',').map((j) => j.trim()) : [];
+  const juryList: string[] = contest.juryNames ? contest.juryNames.split(',').map((j: string) => j.trim()) : [];
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
@@ -218,7 +227,7 @@ export default function ContestPage() {
 
             <div className="space-y-3">
               {contest.regulations && contest.regulations.length > 0 ? (
-                contest.regulations.map((reg) => {
+                contest.regulations.map((reg: any) => {
                   const isOpen = openSection === reg.sectionKey;
                   return (
                     <div
