@@ -35,4 +35,12 @@ describe("public presentation safety", () => {
       expect(exists).toBe(true);
     }
   });
+
+  it("uses a trimmed GitHub Pages router base and generates an SPA fallback", () => {
+    const app = readProjectFile("client/src/App.tsx");
+    const packageJson = readProjectFile("package.json");
+
+    expect(app).toContain('import.meta.env.BASE_URL.replace(/\\/+$/, "")');
+    expect(packageJson).toContain('cp dist/public/index.html dist/public/404.html');
+  });
 });

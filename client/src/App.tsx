@@ -23,14 +23,18 @@ function Routes() {
   );
 }
 
+const routerBase = import.meta.env.BASE_URL === "/"
+  ? ""
+  : import.meta.env.BASE_URL.replace(/\/+$/, "");
+
 function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
-        <TooltipProvider>
-          <Toaster />
-          <WouterRouter base={import.meta.env.BASE_URL}>
-            <Routes />
+          <TooltipProvider>
+            <Toaster />
+            <WouterRouter base={routerBase}>
+              <Routes />
           </WouterRouter>
         </TooltipProvider>
       </ThemeProvider>
