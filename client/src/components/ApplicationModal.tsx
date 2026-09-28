@@ -114,20 +114,20 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && resetAndClose()}>
-      <DialogContent className="grid-cols-1 min-w-0 w-[calc(100vw-1.5rem)] max-w-2xl bg-white border-slate-200 text-slate-900 max-h-[90vh] overflow-x-hidden overflow-y-auto overscroll-contain p-5 sm:p-7 rounded-2xl shadow-xl">
+      <DialogContent className="grid-cols-1 min-w-0 w-[calc(100vw-1.5rem)] max-w-2xl bg-[#0c1222] border-white/15 text-slate-100 max-h-[90vh] overflow-x-hidden overflow-y-auto overscroll-contain p-5 sm:p-7 rounded-3xl shadow-2xl">
         {!submissionResult ? (
           <>
             <DialogHeader className="min-w-0 pr-6">
               <div className="flex items-center gap-2 mb-1">
-                <span className="px-2.5 py-0.5 text-xs rounded-full bg-blue-100 text-blue-800 font-bold flex items-center gap-1">
-                  <Sparkles className="w-3 h-3" /> Онлайн-заявка
+                <span className="px-2.5 py-0.5 text-xs rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-bold flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-amber-400" /> Онлайн-заявка
                 </span>
-                <span className="text-xs text-slate-500">ARTCODE • ТО «Триумф»</span>
+                <span className="text-xs text-slate-400">ARTCODE • ТО «Триумф»</span>
               </div>
-              <DialogTitle className="text-xl sm:text-2xl font-extrabold text-slate-900 leading-tight">
+              <DialogTitle className="text-xl sm:text-2xl font-extrabold text-white leading-tight font-serif">
                 Подача заявки на участие
               </DialogTitle>
-              <DialogDescription className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+              <DialogDescription className="text-slate-300 text-xs sm:text-sm leading-relaxed">
                 Заполните данные участника или коллектива и укажите ссылку на видеозапись выступления (Яндекс.Диск, Rutube, VK Видео, YouTube или Облако Mail.ru).
               </DialogDescription>
             </DialogHeader>
@@ -135,14 +135,14 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
             <form onSubmit={handleSubmit} className="w-full min-w-0 space-y-4 mt-3">
               {/* Contest selector */}
               <div className="space-y-1.5">
-                <Label htmlFor="contest-select" className="text-xs font-bold text-slate-700">
-                  Выберите конкурс <span className="text-rose-500">*</span>
+                <Label htmlFor="contest-select" className="text-xs font-bold text-slate-300">
+                  Выберите конкурс <span className="text-amber-400">*</span>
                 </Label>
                 <Select value={selectedContestSlug} onValueChange={setSelectedContestSlug}>
-                  <SelectTrigger id="contest-select" className="w-full bg-slate-50 border-slate-300 text-slate-900 text-sm">
+                  <SelectTrigger id="contest-select" className="w-full bg-slate-900/90 border-white/15 text-white text-sm">
                     <SelectValue placeholder="Выберите конкурс" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-slate-200 text-slate-900">
+                  <SelectContent className="bg-slate-900 border-white/15 text-white">
                     {contestList.map((item) => (
                       <SelectItem key={item.slug} value={item.slug}>
                         {item.title}
@@ -151,67 +151,67 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   </SelectContent>
                 </Select>
 
-                <div className="p-3 bg-blue-50/70 rounded-xl border border-blue-100 text-xs text-blue-900 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
-                  <span>Организационный взнос: <strong>{(currentContest as any).feeAmount || 790} руб.</strong></span>
-                  <span className="text-blue-700 font-medium">Оплата онлайн через PayKeeper / МИР</span>
+                <div className="p-3 bg-amber-500/10 rounded-xl border border-amber-500/20 text-xs text-amber-200 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+                  <span>Организационный взнос: <strong className="text-white font-bold">{(currentContest as any).feeAmount || 790} руб.</strong></span>
+                  <span className="text-amber-400 font-medium">Оплата онлайн через PayKeeper / МИР</span>
                 </div>
               </div>
 
               {/* Participant & Collective */}
               <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="participant" className="text-xs font-bold text-slate-700">
-                    ФИО участника <span className="text-rose-500">*</span>
+                  <Label htmlFor="participant" className="text-xs font-bold text-slate-300">
+                    ФИО солиста или название дуэта <span className="text-amber-400">*</span>
                   </Label>
                   <Input
                     id="participant"
                     required
-                    placeholder="Например: Иванов Иван"
+                    placeholder="Например: Иванова Анна"
                     value={participantName}
                     onChange={(e) => setParticipantName(e.target.value)}
-                    className="border-slate-300 text-sm"
+                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
                   />
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="collective" className="text-xs font-bold text-slate-700">
-                    Название ансамбля / коллектива (если есть)
+                  <Label htmlFor="collective" className="text-xs font-bold text-slate-300">
+                    Название ансамбля / коллектива
                   </Label>
                   <Input
                     id="collective"
-                    placeholder="Например: Образцовый ансамбль «Заря»"
+                    placeholder="Если участвует группа / хор"
                     value={collectiveName}
                     onChange={(e) => setCollectiveName(e.target.value)}
-                    className="border-slate-300 text-sm"
+                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
                   />
                 </div>
               </div>
 
-              {/* Nomination & Performance */}
+              {/* Nomination & Performance title */}
               <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="nomination" className="text-xs font-bold text-slate-700">
-                    Номинация <span className="text-rose-500">*</span>
+                  <Label htmlFor="nomination" className="text-xs font-bold text-slate-300">
+                    Номинация <span className="text-amber-400">*</span>
                   </Label>
                   <Input
                     id="nomination"
                     required
-                    placeholder="Например: Эстрадный вокал, соло"
+                    placeholder="Например: Академический вокал, соло"
                     value={nomination}
                     onChange={(e) => setNomination(e.target.value)}
-                    className="border-slate-300 text-sm"
+                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
                   />
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="performance" className="text-xs font-bold text-slate-700">
-                    Название конкурсного номера <span className="text-rose-500">*</span>
+                  <Label htmlFor="performance" className="text-xs font-bold text-slate-300">
+                    Название конкурсного номера <span className="text-amber-400">*</span>
                   </Label>
                   <Input
                     id="performance"
                     required
-                    placeholder="Например: Романс «Утро туманное»"
+                    placeholder="Например: Романс «Соловей»"
                     value={performanceTitle}
                     onChange={(e) => setPerformanceTitle(e.target.value)}
-                    className="border-slate-300 text-sm"
+                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
                   />
                 </div>
               </div>
@@ -219,28 +219,28 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               {/* Age category & City */}
               <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="age" className="text-xs font-bold text-slate-700">
-                    Возрастная категория <span className="text-rose-500">*</span>
+                  <Label htmlFor="ageCategory" className="text-xs font-bold text-slate-300">
+                    Возрастная категория <span className="text-amber-400">*</span>
                   </Label>
                   <Select value={ageCategory} onValueChange={setAgeCategory}>
-                    <SelectTrigger id="age" className="w-full bg-slate-50 border-slate-300 text-slate-900 text-sm">
-                      <SelectValue />
+                    <SelectTrigger id="ageCategory" className="w-full bg-slate-900/90 border-white/15 text-white text-sm">
+                      <SelectValue placeholder="Выберите возраст" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-slate-200 text-slate-900">
-                      <SelectItem value="до 6 лет">Дошкольная (до 6 лет)</SelectItem>
-                      <SelectItem value="7-9 лет">Младшая (7–9 лет)</SelectItem>
-                      <SelectItem value="10-12 лет">Средняя (10–12 лет)</SelectItem>
-                      <SelectItem value="13-15 лет">Старшая (13–15 лет)</SelectItem>
-                      <SelectItem value="16-18 лет">Юношеская (16–18 лет)</SelectItem>
-                      <SelectItem value="19-25 лет">Молодежная (19–25 лет)</SelectItem>
-                      <SelectItem value="26+ лет">Взрослая (от 26 лет)</SelectItem>
-                      <SelectItem value="Смешанная">Смешанная группа</SelectItem>
+                    <SelectContent className="bg-slate-900 border-white/15 text-white">
+                      <SelectItem value="до 6 лет">До 6 лет (дошкольная)</SelectItem>
+                      <SelectItem value="7-9 лет">7-9 лет (младшая I)</SelectItem>
+                      <SelectItem value="10-12 лет">10-12 лет (младшая II)</SelectItem>
+                      <SelectItem value="13-15 лет">13-15 лет (средняя)</SelectItem>
+                      <SelectItem value="16-18 лет">16-18 лет (старшая)</SelectItem>
+                      <SelectItem value="19-25 лет">19-25 лет (молодежная)</SelectItem>
+                      <SelectItem value="старше 25 лет">Старше 25 лет (взрослая)</SelectItem>
+                      <SelectItem value="смешанная">Смешанная группа</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="city" className="text-xs font-bold text-slate-700">
-                    Город / населенный пункт <span className="text-rose-500">*</span>
+                  <Label htmlFor="city" className="text-xs font-bold text-slate-300">
+                    Город / Населенный пункт <span className="text-amber-400">*</span>
                   </Label>
                   <Input
                     id="city"
@@ -248,32 +248,35 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="Например: Санкт-Петербург"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    className="border-slate-300 text-sm"
+                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
                   />
                 </div>
               </div>
 
-              {/* Media link */}
+              {/* Video URL */}
               <div className="space-y-1">
-                <Label htmlFor="video" className="text-xs font-bold text-slate-700 flex items-center justify-between">
-                  <span>Ссылка на видеозапись выступления <span className="text-rose-500">*</span></span>
-                  <span className="text-[11px] text-slate-500">Яндекс.Диск, Rutube, VK, Облако Mail</span>
+                <Label htmlFor="videoUrl" className="text-xs font-bold text-slate-300 flex items-center justify-between">
+                  <span>Ссылка на видеозапись выступления <span className="text-amber-400">*</span></span>
+                  <span className="text-[11px] text-slate-400 font-normal">Яндекс.Диск, Rutube, VK, Mail.ru</span>
                 </Label>
-                <Input
-                  id="video"
-                  type="url"
-                  required
-                  placeholder="https://disk.yandex.ru/... или https://rutube.ru/..."
-                  value={videoUrl}
-                  onChange={(e) => setVideoUrl(e.target.value)}
-                  className="border-slate-300 text-sm"
-                />
+                <div className="relative">
+                  <Input
+                    id="videoUrl"
+                    type="url"
+                    required
+                    placeholder="https://disk.yandex.ru/... или https://rutube.ru/..."
+                    value={videoUrl}
+                    onChange={(e) => setVideoUrl(e.target.value)}
+                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm pl-9"
+                  />
+                  <UploadCloud className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                </div>
               </div>
 
-              {/* Teacher and Institution */}
+              {/* Teacher & Institution */}
               <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="teacher" className="text-xs font-bold text-slate-700">
+                  <Label htmlFor="teacher" className="text-xs font-bold text-slate-300">
                     ФИО педагога / руководителя
                   </Label>
                   <Input
@@ -281,11 +284,11 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="Для благодарственного письма"
                     value={teacherName}
                     onChange={(e) => setTeacherName(e.target.value)}
-                    className="border-slate-300 text-sm"
+                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
                   />
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="institution" className="text-xs font-bold text-slate-700">
+                  <Label htmlFor="institution" className="text-xs font-bold text-slate-300">
                     Направляющее учреждение (школа, ДШИ)
                   </Label>
                   <Input
@@ -293,7 +296,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="Например: ДШИ № 1 им. Глинки"
                     value={institution}
                     onChange={(e) => setInstitution(e.target.value)}
-                    className="border-slate-300 text-sm"
+                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
                   />
                 </div>
               </div>
@@ -301,8 +304,8 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               {/* Email & Phone */}
               <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="email" className="text-xs font-bold text-slate-700">
-                    Электронная почта для наградного пакета <span className="text-rose-500">*</span>
+                  <Label htmlFor="email" className="text-xs font-bold text-slate-300">
+                    Электронная почта для наградного пакета <span className="text-amber-400">*</span>
                   </Label>
                   <Input
                     id="email"
@@ -311,12 +314,12 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="artist@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="border-slate-300 text-sm"
+                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
                   />
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="phone" className="text-xs font-bold text-slate-700">
-                    Контактный номер телефона <span className="text-rose-500">*</span>
+                  <Label htmlFor="phone" className="text-xs font-bold text-slate-300">
+                    Контактный номер телефона <span className="text-amber-400">*</span>
                   </Label>
                   <Input
                     id="phone"
@@ -324,7 +327,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="+7 (999) 000-00-00"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="border-slate-300 text-sm"
+                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
                   />
                 </div>
               </div>
@@ -334,12 +337,12 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                 <Button
                   type="submit"
                   disabled={submitMutation.isPending}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-md text-base"
+                  className="button-motion w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/20 text-base"
                 >
                   {submitMutation.isPending ? 'Регистрация заявки...' : 'Зарегистрировать заявку и перейти к оплате'}
                 </Button>
-                <div className="text-center text-[11px] text-slate-500 mt-2 flex items-center justify-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                <div className="text-center text-[11px] text-slate-400 mt-2.5 flex items-center justify-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                   Данные защищены. Наградные документы отправляются на указанный e-mail.
                 </div>
               </div>
@@ -348,56 +351,57 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
         ) : (
           /* Post-submission PayKeeper screen */
           <div className="py-6 text-center space-y-5">
-            <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-9 h-9" />
+            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-8 h-8" />
             </div>
 
             <div>
-              <h3 className="text-2xl font-extrabold text-slate-900">Заявка успешно принята!</h3>
-              <p className="text-sm text-slate-600 mt-1">
-                Номер заявки: <strong className="text-blue-900 font-mono">#{submissionResult.applicationId}</strong> (Счет {submissionResult.orderId})
+              <h3 className="text-2xl font-bold text-white font-serif">Заявка успешно зарегистрирована!</h3>
+              <p className="text-sm text-slate-300 mt-1">
+                Номер заявки в реестре: <span className="font-mono font-bold text-amber-400">{submissionResult.orderId}</span>
               </p>
             </div>
 
-            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-left space-y-2 text-sm text-slate-700">
-              <div className="flex justify-between items-center pb-2 border-b border-slate-200">
-                <span className="text-slate-500">Конкурс:</span>
-                <span className="font-bold text-slate-900 text-right">{currentContest.title}</span>
+            <div className="p-5 glass-panel rounded-2xl border border-white/15 text-left text-xs text-slate-300 space-y-2 max-w-md mx-auto">
+              <div className="flex justify-between">
+                <span>Конкурс:</span>
+                <span className="font-bold text-white">{currentContest?.title}</span>
               </div>
-              <div className="flex justify-between items-center pb-2 border-b border-slate-200">
-                <span className="text-slate-500">Сумма оргвзноса:</span>
-                <span className="font-bold text-emerald-700 text-base">{submissionResult.paymentAmount} руб.</span>
+              <div className="flex justify-between">
+                <span>Участник:</span>
+                <span className="font-bold text-white">{participantName || collectiveName}</span>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="text-slate-500">Платежный шлюз:</span>
-                <span className="font-semibold text-slate-900">PayKeeper (карты РФ и МИР)</span>
+              <div className="flex justify-between">
+                <span>Сумма взноса:</span>
+                <span className="font-bold text-amber-400 text-sm">{submissionResult.paymentAmount} руб.</span>
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-3 pt-2 max-w-md mx-auto">
               <Button
                 onClick={() => {
                   invoiceMutation.mutate({
                     orderId: submissionResult.orderId,
                     amount: submissionResult.paymentAmount,
-                    clientId: participantName,
+                    serviceName: `Организационный взнос: ${currentContest?.title}`,
                     clientEmail: email,
-                    clientPhone: phone || undefined,
-                    serviceName: `Оргвзнос: ${currentContest.title}`,
+                    clientPhone: phone,
+                    clientId: participantName || collectiveName || 'Участник',
                   });
                 }}
                 disabled={invoiceMutation.isPending}
-                className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold py-3.5 rounded-xl shadow-md text-base flex items-center justify-center gap-2"
+                className="button-motion w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/20 text-base flex items-center justify-center gap-2"
               >
-                {invoiceMutation.isPending ? (
-                  'Создание защищенного счета...'
-                ) : (
-                  <><CreditCard className="w-5 h-5" /> Оплатить взнос {submissionResult.paymentAmount} руб.</>
-                )}
+                <CreditCard className="w-5 h-5" />
+                {invoiceMutation.isPending ? 'Перенаправление в банк...' : 'Оплатить взнос онлайн (PayKeeper)'}
               </Button>
 
-              <Button variant="outline" onClick={resetAndClose} className="w-full border-slate-300">
-                Вернуться к сайту
+              <Button
+                variant="outline"
+                onClick={resetAndClose}
+                className="w-full border-white/20 hover:bg-white/10 text-slate-300"
+              >
+                Вернуться к конкурсам
               </Button>
             </div>
           </div>

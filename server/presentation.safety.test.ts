@@ -25,7 +25,7 @@ describe("public presentation safety", () => {
     expect(contestPage).not.toContain("object-cover");
   });
 
-  it("keeps the hero and catalog stable before the full desktop breakpoint", () => {
+  it("keeps the hero and catalog stable before the full desktop breakpoint with guaranteed contrast", () => {
     const home = readProjectFile("client/src/pages/Home.tsx");
 
     expect(home).toContain("hidden xl:flex");
@@ -33,7 +33,9 @@ describe("public presentation safety", () => {
     expect(home).toContain("grid grid-cols-1 xl:grid-cols-12");
     expect(home).toContain("grid grid-cols-2 lg:grid-cols-4");
     expect(home).toContain("grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3");
-    expect(home).toContain("border-blue-600 bg-blue-600 text-white");
+    expect(home).toContain("backgroundColor: isSelected ? '#f59e0b' : '#0f172a'");
+    expect(home).toContain("color: isSelected ? '#020617' : '#f8fafc'");
+    expect(home).toContain("Search className");
   });
 
   it("resolves visual assets to portable public images bundled in client/public/images", () => {
