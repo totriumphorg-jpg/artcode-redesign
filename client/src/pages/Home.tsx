@@ -109,7 +109,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-600">
+            <nav className="hidden xl:flex items-center gap-6 text-sm font-semibold text-slate-600">
               <a href="#competitions" className="hover:text-blue-600 transition-colors">Все конкурсы</a>
               <a href="#rules" className="hover:text-blue-600 transition-colors">Правила и видео</a>
               <a href="#jury" className="hover:text-blue-600 transition-colors">Экспертный совет</a>
@@ -133,7 +133,7 @@ export default function Home() {
             </Button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-slate-700 hover:text-blue-600"
+              className="xl:hidden p-2 text-slate-700 hover:text-blue-600"
               aria-label="Меню"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -143,7 +143,7 @@ export default function Home() {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3 text-sm font-semibold">
+          <div className="xl:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3 text-sm font-semibold">
             <a href="#competitions" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-700 hover:text-blue-600">Все конкурсы</a>
             <a href="#rules" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-700 hover:text-blue-600">Правила и видео</a>
             <a href="#jury" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-700 hover:text-blue-600">Экспертный совет</a>
@@ -157,23 +157,23 @@ export default function Home() {
       {/* Hero Section — Light, Fresh & Inspiring (Customer revision 1 & 2) */}
       <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-slate-50 pt-12 pb-16 md:pt-16 md:pb-24 border-b border-slate-200">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 xl:gap-12 items-center">
+            <div className="xl:col-span-7 space-y-6 text-center xl:text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100 border border-blue-200 text-blue-800 text-xs font-bold uppercase tracking-wide">
                 <Sparkles className="w-3.5 h-3.5 text-blue-600" />
                 Международная конкурсная платформа
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
                 Раскройте свой талант на мировом уровне с <span className="text-blue-600">ARTCODE</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+              <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto xl:mx-0 font-normal leading-relaxed">
                 Регулярные заочные международные творческие конкурсы по вокалу, хореографии, театру, цирку и инструментальному творчеству. Персональная рецензия каждому участнику на официальном бланке.
               </p>
 
               {/* Action buttons */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 pt-2">
                 <Button
                   onClick={() => openApplication('misteriya-zvuka')}
                   className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all text-base"
@@ -189,29 +189,29 @@ export default function Home() {
               </div>
 
               {/* Advantages bar — Customer revision 2 (removed 12 countries, replaced with qualified jury) */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-200 text-left">
-                <div className="p-3 bg-white rounded-xl border border-slate-200/80 shadow-sm">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 pt-6 border-t border-slate-200 text-left">
+                <div className="min-w-0 p-3 bg-white rounded-xl border border-slate-200/80 shadow-sm">
                   <div className="text-blue-600 font-extrabold text-xl">Жюри</div>
-                  <div className="text-xs text-slate-600 mt-0.5">Заслуженные артисты и профессора</div>
+                  <div className="text-xs text-slate-600 mt-0.5 break-words">Заслуженные артисты и профессора</div>
                 </div>
-                <div className="p-3 bg-white rounded-xl border border-slate-200/80 shadow-sm">
+                <div className="min-w-0 p-3 bg-white rounded-xl border border-slate-200/80 shadow-sm">
                   <div className="text-blue-600 font-extrabold text-xl">14 дней</div>
-                  <div className="text-xs text-slate-600 mt-0.5">Срок подведения официальных итогов</div>
+                  <div className="text-xs text-slate-600 mt-0.5 break-words">Срок подведения официальных итогов</div>
                 </div>
-                <div className="p-3 bg-white rounded-xl border border-slate-200/80 shadow-sm">
+                <div className="min-w-0 p-3 bg-white rounded-xl border border-slate-200/80 shadow-sm">
                   <div className="text-blue-600 font-extrabold text-xl">100%</div>
-                  <div className="text-xs text-slate-600 mt-0.5">Официальные дипломы и рецензии</div>
+                  <div className="text-xs text-slate-600 mt-0.5 break-words">Официальные дипломы и рецензии</div>
                 </div>
-                <div className="p-3 bg-white rounded-xl border border-slate-200/80 shadow-sm">
+                <div className="min-w-0 p-3 bg-white rounded-xl border border-slate-200/80 shadow-sm">
                   <div className="text-amber-500 font-extrabold text-xl">Гранты</div>
-                  <div className="text-xs text-slate-600 mt-0.5">Поездки на очные фестивали</div>
+                  <div className="text-xs text-slate-600 mt-0.5 break-words">Поездки на очные фестивали</div>
                 </div>
               </div>
             </div>
 
             {/* Visual Stage Banner */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-950">
+            <div className="xl:col-span-5 relative">
+              <div className="relative mx-auto max-w-md xl:max-w-none rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-950">
                 <img
                   src={ASSETS.hero}
                   alt="Международные творческие конкурсы ARTCODE"
@@ -246,7 +246,7 @@ export default function Home() {
             </p>
 
             {/* Category tabs */}
-            <div className="flex flex-wrap justify-center gap-2 mt-6">
+            <div className="flex flex-wrap justify-center gap-2 mt-6 max-w-full">
               {[
                 { id: 'all', label: 'Все направления' },
                 { id: 'vocal', label: 'Вокал' },
@@ -258,10 +258,10 @@ export default function Home() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveDiscipline(tab.id)}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                  className={`max-w-full whitespace-nowrap px-4 py-2 rounded-xl border text-xs sm:text-sm font-bold transition-all ${
                     activeDiscipline === tab.id
-                      ? 'bg-blue-600 text-white shadow-sm'
-                      : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+                      ? 'border-blue-600 bg-blue-600 text-white shadow-sm'
+                      : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-100'
                   }`}
                 >
                   {tab.label}
@@ -271,7 +271,7 @@ export default function Home() {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredCompetitions.map((comp) => {
               const base = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '') + '/';
               const rawImage = (comp as any).cardImage;
@@ -531,7 +531,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {reports.map((report) => (
                 <Link
                   key={report.id}
@@ -625,7 +625,7 @@ export default function Home() {
             <h3 className="text-xl font-extrabold text-slate-900 mt-1">Партнеры и ассоциации</h3>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
             {PARTNERS_DATA.slice(0, 5).map((partner, idx) => (
               <a
                 key={idx}
