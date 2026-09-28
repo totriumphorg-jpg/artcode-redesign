@@ -130,7 +130,7 @@ export default function ContestPage() {
             <img src={ASSETS.triumphLogo} alt="ТО Триумф" className="h-8 w-auto object-contain hidden md:block opacity-90" />
             <Button
               onClick={() => setIsModalOpen(true)}
-              className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm shadow-md"
+              className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-slate-950 font-bold px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm shadow-md"
             >
               Подать заявку
             </Button>
@@ -191,7 +191,7 @@ export default function ContestPage() {
             <div className="flex flex-wrap gap-4">
               <Button
                 onClick={() => setIsModalOpen(true)}
-                className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-extrabold px-8 py-3.5 rounded-xl shadow-lg shadow-amber-500/25 text-base"
+                className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-slate-950 font-extrabold px-8 py-3.5 rounded-xl shadow-lg shadow-amber-500/25 text-base"
               >
                 Заполнить онлайн-заявку
               </Button>
@@ -306,7 +306,7 @@ export default function ContestPage() {
             <div className="mt-12 text-center">
               <Button
                 onClick={() => setIsModalOpen(true)}
-                className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-amber-500/25 text-base"
+                className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-amber-500/25 text-base"
               >
                 Подать заявку на участие в конкурсе
               </Button>

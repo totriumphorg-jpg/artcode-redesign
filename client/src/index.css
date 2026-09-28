@@ -138,6 +138,11 @@
   overflow: hidden;
   transition: transform 180ms var(--ease-out), box-shadow 220ms var(--ease-out), filter 220ms var(--ease-out), background-color 220ms var(--ease-out);
 }
+.light-artcode .button-motion,
+.light-artcode-modal .button-motion {
+  /* Non-negotiable readability guard for the light public interface. */
+  color: #0f172a !important;
+}
 .button-motion::after {
   content: '';
   position: absolute;

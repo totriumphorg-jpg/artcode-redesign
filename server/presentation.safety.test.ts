@@ -35,10 +35,30 @@ describe("public presentation safety", () => {
     expect(home).toContain("grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3");
     expect(home).toContain('light-artcode min-h-screen');
     expect(home).toContain("backgroundColor: isSelected ? '#d97706' : '#ffffff'");
-    expect(home).toContain("color: isSelected ? '#ffffff' : '#334155'");
+    expect(home).toContain("color: isSelected ? '#0f172a' : '#334155'");
     expect(home).toContain("borderColor: isSelected ? '#d97706' : '#cbd5e1'");
     expect(home).not.toContain("bg-[#060913]");
     expect(home).toContain("Search className");
+  });
+
+  it("prevents light public pages from shipping white or pale text on light surfaces", () => {
+    const publicViews = [
+      "client/src/pages/Home.tsx",
+      "client/src/pages/ContestPage.tsx",
+      "client/src/pages/ReportPage.tsx",
+      "client/src/pages/Admin.tsx",
+      "client/src/pages/NotFound.tsx",
+      "client/src/components/ApplicationModal.tsx",
+    ].map(readProjectFile);
+    const styles = readProjectFile("client/src/index.css");
+
+    for (const view of publicViews) {
+      expect(view).not.toContain("text-white");
+      expect(view).not.toContain("text-amber-200");
+      expect(view).not.toContain("text-slate-400");
+    }
+    expect(styles).toContain(".light-artcode .button-motion");
+    expect(styles).toContain("color: #0f172a !important");
   });
 
   it("resolves visual assets to portable public images bundled in client/public/images", () => {

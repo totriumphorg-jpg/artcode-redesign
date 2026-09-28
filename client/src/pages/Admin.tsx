@@ -170,7 +170,7 @@ export default function Admin() {
           </p>
           <Button
             onClick={() => startLogin()}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl shadow"
+            className="w-full bg-blue-100 hover:bg-blue-200 text-blue-950 font-bold py-2.5 rounded-xl shadow"
           >
             Войти как администратор
           </Button>
@@ -226,7 +226,7 @@ export default function Admin() {
               onClick={() => setActiveTab('applications')}
               className={`px-4 py-2 text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === 'applications'
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-blue-100 text-blue-950'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
@@ -237,7 +237,7 @@ export default function Admin() {
               onClick={() => setActiveTab('contests')}
               className={`px-4 py-2 text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === 'contests'
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-blue-100 text-blue-950'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
@@ -248,7 +248,7 @@ export default function Admin() {
               onClick={() => setActiveTab('regulations')}
               className={`px-4 py-2 text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === 'regulations'
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-blue-100 text-blue-950'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
@@ -259,7 +259,7 @@ export default function Admin() {
               onClick={() => setActiveTab('reports')}
               className={`px-4 py-2 text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === 'reports'
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-blue-100 text-blue-950'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
@@ -270,7 +270,7 @@ export default function Admin() {
               onClick={() => setActiveTab('paykeeper')}
               className={`px-4 py-2 text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === 'paykeeper'
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-blue-100 text-blue-950'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
@@ -296,7 +296,7 @@ export default function Admin() {
               <Button
                 onClick={() => exportCsvMutation.mutate({ contestSlug: selectedAppContestSlug })}
                 disabled={exportCsvMutation.isPending}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold flex items-center gap-2 shadow-sm"
+                className="bg-emerald-100 hover:bg-emerald-200 text-emerald-950 font-bold flex items-center gap-2 shadow-sm"
               >
                 <Download className="w-4 h-4" />
                 {exportCsvMutation.isPending ? 'Формирование CSV...' : 'Скачать в CSV'}
@@ -356,7 +356,7 @@ export default function Admin() {
                         <td className="px-4 py-3">
                           <div className="font-bold text-slate-900">{app.participantName}</div>
                           {app.collectiveName && <div className="text-xs text-slate-500">{app.collectiveName}</div>}
-                          <div className="text-xs text-slate-400">Возраст: {app.ageCategory}</div>
+                          <div className="text-xs text-slate-600">Возраст: {app.ageCategory}</div>
                         </td>
                         <td className="px-4 py-3">
                           <div className="font-medium text-slate-900">{app.nomination}</div>
@@ -474,7 +474,7 @@ export default function Admin() {
                       setDuplicateTitle(`${contest.title} (Новый сезон)`);
                       setDuplicateSlug(`${contest.slug}-season-${Date.now().toString().slice(-4)}`);
                     }}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs flex items-center gap-1.5"
+                    className="bg-blue-100 hover:bg-blue-200 text-blue-950 font-semibold text-xs flex items-center gap-1.5"
                   >
                     <Copy className="w-3.5 h-3.5" /> Копировать проект
                   </Button>
@@ -531,7 +531,7 @@ export default function Admin() {
                       });
                     }}
                     disabled={duplicateMutation.isPending}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold"
+                    className="bg-blue-100 hover:bg-blue-200 text-blue-950 font-bold"
                   >
                     {duplicateMutation.isPending ? 'Создание...' : 'Создать проект'}
                   </Button>
@@ -632,7 +632,7 @@ export default function Admin() {
                       });
                     }}
                     disabled={updateContestMutation.isPending}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold"
+                    className="bg-blue-100 hover:bg-blue-200 text-blue-950 font-bold"
                   >
                     {updateContestMutation.isPending ? 'Сохранение...' : 'Сохранить изменения'}
                   </Button>
@@ -728,7 +728,7 @@ export default function Admin() {
                           });
                         }}
                         disabled={saveRegMutation.isPending}
-                        className="bg-blue-600 hover:bg-blue-700 text-white font-bold"
+                        className="bg-blue-100 hover:bg-blue-200 text-blue-950 font-bold"
                       >
                         {saveRegMutation.isPending ? 'Сохранение...' : 'Сохранить изменения'}
                       </Button>
@@ -861,7 +861,7 @@ export default function Admin() {
                     createReportMutation.mutate({ ...newReport, protocolUrl });
                   }}
                   disabled={createReportMutation.isPending || uploadProtocolMutation.isPending}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs"
+                  className="w-full bg-blue-100 hover:bg-blue-200 text-blue-950 font-bold text-xs"
                 >
                   {createReportMutation.isPending || uploadProtocolMutation.isPending ? 'Публикация...' : 'Опубликовать отчет'}
                 </Button>
@@ -882,7 +882,7 @@ export default function Admin() {
                   <h4 className="font-bold text-slate-900 text-base mb-1">{r.title}</h4>
                   <p className="text-xs text-slate-600 mb-3">{r.summary}</p>
                   <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-100">
-                    <span className="text-slate-400 font-mono">/report/{r.slug}</span>
+                    <span className="text-slate-600 font-mono">/report/{r.slug}</span>
                     <Link href={`/report/${r.slug}`} target="_blank" className="text-blue-600 font-semibold hover:underline">
                       Открыть страницу отчета ↗
                     </Link>

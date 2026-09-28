@@ -151,7 +151,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   </SelectContent>
                 </Select>
 
-                <div className="p-3 bg-amber-500/10 rounded-xl border border-amber-200 text-xs text-amber-200 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+                <div className="p-3 bg-amber-500/10 rounded-xl border border-amber-200 text-xs text-amber-900 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
                   <span>Организационный взнос: <strong className="text-slate-900 font-bold">{(currentContest as any).feeAmount || 790} руб.</strong></span>
                   <span className="text-amber-700 font-medium">Оплата онлайн через PayKeeper / МИР</span>
                 </div>
@@ -337,7 +337,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                 <Button
                   type="submit"
                   disabled={submitMutation.isPending}
-                  className="button-motion w-full bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/25 text-base"
+                  className="button-motion w-full bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/25 text-base"
                 >
                   {submitMutation.isPending ? 'Регистрация заявки...' : 'Зарегистрировать заявку и перейти к оплате'}
                 </Button>
@@ -390,7 +390,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   });
                 }}
                 disabled={invoiceMutation.isPending}
-                className="button-motion w-full bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/25 text-base flex items-center justify-center gap-2"
+                className="button-motion w-full bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/25 text-base flex items-center justify-center gap-2"
               >
                 <CreditCard className="w-5 h-5" />
                 {invoiceMutation.isPending ? 'Перенаправление в банк...' : 'Оплатить взнос онлайн (PayKeeper)'}

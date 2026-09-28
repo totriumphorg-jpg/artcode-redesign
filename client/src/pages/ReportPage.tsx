@@ -126,7 +126,7 @@ export default function ReportPage() {
 
             <div className="text-center pt-4">
               <Link href="/">
-                <Button className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold px-8 py-3 rounded-xl shadow-lg shadow-amber-500/25 text-base">
+                <Button className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-slate-950 font-bold px-8 py-3 rounded-xl shadow-lg shadow-amber-500/25 text-base">
                   Перейти к актуальным конкурсам
                 </Button>
               </Link>

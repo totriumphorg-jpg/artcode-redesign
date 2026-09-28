@@ -145,7 +145,7 @@ export default function Home() {
             />
             <Button
               onClick={() => openApplication('misteriya-zvuka')}
-              className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-amber-500/25 text-sm"
+              className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-slate-950 font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-amber-500/25 text-sm"
             >
               Подать заявку
             </Button>
@@ -198,7 +198,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 pt-2">
                 <Button
                   onClick={() => openApplication('misteriya-zvuka')}
-                  className="button-motion w-full sm:w-auto bg-gradient-to-r from-amber-600 via-orange-500 to-amber-600 hover:from-amber-500 hover:to-orange-400 text-white font-extrabold px-8 py-3.5 rounded-xl shadow-xl shadow-amber-500/25 text-base"
+                  className="button-motion w-full sm:w-auto bg-gradient-to-r from-amber-600 via-orange-500 to-amber-600 hover:from-amber-500 hover:to-orange-400 text-slate-950 font-extrabold px-8 py-3.5 rounded-xl shadow-xl shadow-amber-500/25 text-base"
                 >
                   Подать заявку на конкурс
                 </Button>
@@ -239,7 +239,7 @@ export default function Home() {
                   alt="Международные творческие конкурсы ARTCODE"
                   className="block w-full h-auto aspect-video object-contain"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-transparent flex flex-col justify-end p-6 text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-transparent flex flex-col justify-end p-6 text-slate-50">
                   <span className="text-xs uppercase tracking-wider font-bold text-amber-300">
                     Творческое объединение «Триумф»
                   </span>
@@ -298,7 +298,7 @@ export default function Home() {
                     onClick={() => setActiveDiscipline(tab.id)}
                     style={{
                       backgroundColor: isSelected ? '#d97706' : '#ffffff',
-                      color: isSelected ? '#ffffff' : '#334155',
+                      color: isSelected ? '#0f172a' : '#334155',
                       borderColor: isSelected ? '#d97706' : '#cbd5e1',
                     }}
                     className={`max-w-full whitespace-nowrap px-4 py-2 rounded-xl border text-xs sm:text-sm font-bold transition-all shadow-md flex items-center gap-2 ${
@@ -307,7 +307,7 @@ export default function Home() {
                         : 'hover:bg-amber-50 hover:border-amber-300'
                     }`}
                   >
-                    <IconComponent className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-blue-700'}`} />
+                    <IconComponent className={`w-3.5 h-3.5 ${isSelected ? 'text-slate-950' : 'text-blue-700'}`} />
                     <span>{tab.label}</span>
                   </button>
                 );
@@ -354,7 +354,7 @@ export default function Home() {
                       </span>
                     </div>
                     <div className="absolute top-4 right-4">
-                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-600/90 text-white backdrop-blur-md shadow-lg border border-blue-200">
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-950 backdrop-blur-md shadow-lg border border-blue-200">
                         {comp.badge}
                       </span>
                     </div>
@@ -417,7 +417,7 @@ export default function Home() {
                       <Button
                         size="sm"
                         onClick={() => openApplication(comp.slug)}
-                        className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold text-xs rounded-xl px-4 shadow-md"
+                        className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-slate-950 font-bold text-xs rounded-xl px-4 shadow-md"
                       >
                         Подать заявку
                       </Button>
