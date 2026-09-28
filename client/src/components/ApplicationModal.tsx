@@ -114,20 +114,20 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && resetAndClose()}>
-      <DialogContent className="grid-cols-1 min-w-0 w-[calc(100vw-1.5rem)] max-w-2xl bg-[#0c1222] border-white/15 text-slate-100 max-h-[90vh] overflow-x-hidden overflow-y-auto overscroll-contain p-5 sm:p-7 rounded-3xl shadow-2xl">
+      <DialogContent className="light-artcode-modal grid-cols-1 min-w-0 w-[calc(100vw-1.5rem)] max-w-2xl bg-white border-slate-200 text-slate-900 max-h-[90vh] overflow-x-hidden overflow-y-auto overscroll-contain p-5 sm:p-7 rounded-3xl shadow-2xl">
         {!submissionResult ? (
           <>
             <DialogHeader className="min-w-0 pr-6">
               <div className="flex items-center gap-2 mb-1">
-                <span className="px-2.5 py-0.5 text-xs rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-bold flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-amber-400" /> Онлайн-заявка
+                <span className="px-2.5 py-0.5 text-xs rounded-full bg-amber-500/15 text-amber-700 border border-amber-200 font-bold flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-amber-700" /> Онлайн-заявка
                 </span>
-                <span className="text-xs text-slate-400">ARTCODE • ТО «Триумф»</span>
+                <span className="text-xs text-slate-600">ARTCODE • ТО «Триумф»</span>
               </div>
-              <DialogTitle className="text-xl sm:text-2xl font-extrabold text-white leading-tight font-serif">
+              <DialogTitle className="text-xl sm:text-2xl font-extrabold text-slate-900 leading-tight font-serif">
                 Подача заявки на участие
               </DialogTitle>
-              <DialogDescription className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <DialogDescription className="text-slate-700 text-xs sm:text-sm leading-relaxed">
                 Заполните данные участника или коллектива и укажите ссылку на видеозапись выступления (Яндекс.Диск, Rutube, VK Видео, YouTube или Облако Mail.ru).
               </DialogDescription>
             </DialogHeader>
@@ -135,14 +135,14 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
             <form onSubmit={handleSubmit} className="w-full min-w-0 space-y-4 mt-3">
               {/* Contest selector */}
               <div className="space-y-1.5">
-                <Label htmlFor="contest-select" className="text-xs font-bold text-slate-300">
-                  Выберите конкурс <span className="text-amber-400">*</span>
+                <Label htmlFor="contest-select" className="text-xs font-bold text-slate-700">
+                  Выберите конкурс <span className="text-amber-700">*</span>
                 </Label>
                 <Select value={selectedContestSlug} onValueChange={setSelectedContestSlug}>
-                  <SelectTrigger id="contest-select" className="w-full bg-slate-900/90 border-white/15 text-white text-sm">
+                  <SelectTrigger id="contest-select" className="w-full bg-white border-slate-200 text-slate-900 text-sm">
                     <SelectValue placeholder="Выберите конкурс" />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-900 border-white/15 text-white">
+                  <SelectContent className="bg-white border-slate-200 text-slate-900">
                     {contestList.map((item) => (
                       <SelectItem key={item.slug} value={item.slug}>
                         {item.title}
@@ -151,17 +151,17 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   </SelectContent>
                 </Select>
 
-                <div className="p-3 bg-amber-500/10 rounded-xl border border-amber-500/20 text-xs text-amber-200 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
-                  <span>Организационный взнос: <strong className="text-white font-bold">{(currentContest as any).feeAmount || 790} руб.</strong></span>
-                  <span className="text-amber-400 font-medium">Оплата онлайн через PayKeeper / МИР</span>
+                <div className="p-3 bg-amber-500/10 rounded-xl border border-amber-200 text-xs text-amber-200 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+                  <span>Организационный взнос: <strong className="text-slate-900 font-bold">{(currentContest as any).feeAmount || 790} руб.</strong></span>
+                  <span className="text-amber-700 font-medium">Оплата онлайн через PayKeeper / МИР</span>
                 </div>
               </div>
 
               {/* Participant & Collective */}
               <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="participant" className="text-xs font-bold text-slate-300">
-                    ФИО солиста или название дуэта <span className="text-amber-400">*</span>
+                  <Label htmlFor="participant" className="text-xs font-bold text-slate-700">
+                    ФИО солиста или название дуэта <span className="text-amber-700">*</span>
                   </Label>
                   <Input
                     id="participant"
@@ -169,11 +169,11 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="Например: Иванова Анна"
                     value={participantName}
                     onChange={(e) => setParticipantName(e.target.value)}
-                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
+                    className="bg-white border-slate-200 text-slate-900 placeholder-slate-500 text-sm"
                   />
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="collective" className="text-xs font-bold text-slate-300">
+                  <Label htmlFor="collective" className="text-xs font-bold text-slate-700">
                     Название ансамбля / коллектива
                   </Label>
                   <Input
@@ -181,7 +181,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="Если участвует группа / хор"
                     value={collectiveName}
                     onChange={(e) => setCollectiveName(e.target.value)}
-                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
+                    className="bg-white border-slate-200 text-slate-900 placeholder-slate-500 text-sm"
                   />
                 </div>
               </div>
@@ -189,8 +189,8 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               {/* Nomination & Performance title */}
               <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="nomination" className="text-xs font-bold text-slate-300">
-                    Номинация <span className="text-amber-400">*</span>
+                  <Label htmlFor="nomination" className="text-xs font-bold text-slate-700">
+                    Номинация <span className="text-amber-700">*</span>
                   </Label>
                   <Input
                     id="nomination"
@@ -198,12 +198,12 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="Например: Академический вокал, соло"
                     value={nomination}
                     onChange={(e) => setNomination(e.target.value)}
-                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
+                    className="bg-white border-slate-200 text-slate-900 placeholder-slate-500 text-sm"
                   />
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="performance" className="text-xs font-bold text-slate-300">
-                    Название конкурсного номера <span className="text-amber-400">*</span>
+                  <Label htmlFor="performance" className="text-xs font-bold text-slate-700">
+                    Название конкурсного номера <span className="text-amber-700">*</span>
                   </Label>
                   <Input
                     id="performance"
@@ -211,7 +211,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="Например: Романс «Соловей»"
                     value={performanceTitle}
                     onChange={(e) => setPerformanceTitle(e.target.value)}
-                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
+                    className="bg-white border-slate-200 text-slate-900 placeholder-slate-500 text-sm"
                   />
                 </div>
               </div>
@@ -219,14 +219,14 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               {/* Age category & City */}
               <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="ageCategory" className="text-xs font-bold text-slate-300">
-                    Возрастная категория <span className="text-amber-400">*</span>
+                  <Label htmlFor="ageCategory" className="text-xs font-bold text-slate-700">
+                    Возрастная категория <span className="text-amber-700">*</span>
                   </Label>
                   <Select value={ageCategory} onValueChange={setAgeCategory}>
-                    <SelectTrigger id="ageCategory" className="w-full bg-slate-900/90 border-white/15 text-white text-sm">
+                    <SelectTrigger id="ageCategory" className="w-full bg-white border-slate-200 text-slate-900 text-sm">
                       <SelectValue placeholder="Выберите возраст" />
                     </SelectTrigger>
-                    <SelectContent className="bg-slate-900 border-white/15 text-white">
+                    <SelectContent className="bg-white border-slate-200 text-slate-900">
                       <SelectItem value="до 6 лет">До 6 лет (дошкольная)</SelectItem>
                       <SelectItem value="7-9 лет">7-9 лет (младшая I)</SelectItem>
                       <SelectItem value="10-12 лет">10-12 лет (младшая II)</SelectItem>
@@ -239,8 +239,8 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   </Select>
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="city" className="text-xs font-bold text-slate-300">
-                    Город / Населенный пункт <span className="text-amber-400">*</span>
+                  <Label htmlFor="city" className="text-xs font-bold text-slate-700">
+                    Город / Населенный пункт <span className="text-amber-700">*</span>
                   </Label>
                   <Input
                     id="city"
@@ -248,16 +248,16 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="Например: Санкт-Петербург"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
+                    className="bg-white border-slate-200 text-slate-900 placeholder-slate-500 text-sm"
                   />
                 </div>
               </div>
 
               {/* Video URL */}
               <div className="space-y-1">
-                <Label htmlFor="videoUrl" className="text-xs font-bold text-slate-300 flex items-center justify-between">
-                  <span>Ссылка на видеозапись выступления <span className="text-amber-400">*</span></span>
-                  <span className="text-[11px] text-slate-400 font-normal">Яндекс.Диск, Rutube, VK, Mail.ru</span>
+                <Label htmlFor="videoUrl" className="text-xs font-bold text-slate-700 flex items-center justify-between">
+                  <span>Ссылка на видеозапись выступления <span className="text-amber-700">*</span></span>
+                  <span className="text-[11px] text-slate-600 font-normal">Яндекс.Диск, Rutube, VK, Mail.ru</span>
                 </Label>
                 <div className="relative">
                   <Input
@@ -267,16 +267,16 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="https://disk.yandex.ru/... или https://rutube.ru/..."
                     value={videoUrl}
                     onChange={(e) => setVideoUrl(e.target.value)}
-                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm pl-9"
+                    className="bg-white border-slate-200 text-slate-900 placeholder-slate-500 text-sm pl-9"
                   />
-                  <UploadCloud className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <UploadCloud className="w-4 h-4 text-slate-600 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
               </div>
 
               {/* Teacher & Institution */}
               <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="teacher" className="text-xs font-bold text-slate-300">
+                  <Label htmlFor="teacher" className="text-xs font-bold text-slate-700">
                     ФИО педагога / руководителя
                   </Label>
                   <Input
@@ -284,11 +284,11 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="Для благодарственного письма"
                     value={teacherName}
                     onChange={(e) => setTeacherName(e.target.value)}
-                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
+                    className="bg-white border-slate-200 text-slate-900 placeholder-slate-500 text-sm"
                   />
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="institution" className="text-xs font-bold text-slate-300">
+                  <Label htmlFor="institution" className="text-xs font-bold text-slate-700">
                     Направляющее учреждение (школа, ДШИ)
                   </Label>
                   <Input
@@ -296,7 +296,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="Например: ДШИ № 1 им. Глинки"
                     value={institution}
                     onChange={(e) => setInstitution(e.target.value)}
-                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
+                    className="bg-white border-slate-200 text-slate-900 placeholder-slate-500 text-sm"
                   />
                 </div>
               </div>
@@ -304,8 +304,8 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               {/* Email & Phone */}
               <div className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="email" className="text-xs font-bold text-slate-300">
-                    Электронная почта для наградного пакета <span className="text-amber-400">*</span>
+                  <Label htmlFor="email" className="text-xs font-bold text-slate-700">
+                    Электронная почта для наградного пакета <span className="text-amber-700">*</span>
                   </Label>
                   <Input
                     id="email"
@@ -314,12 +314,12 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="artist@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
+                    className="bg-white border-slate-200 text-slate-900 placeholder-slate-500 text-sm"
                   />
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="phone" className="text-xs font-bold text-slate-300">
-                    Контактный номер телефона <span className="text-amber-400">*</span>
+                  <Label htmlFor="phone" className="text-xs font-bold text-slate-700">
+                    Контактный номер телефона <span className="text-amber-700">*</span>
                   </Label>
                   <Input
                     id="phone"
@@ -327,7 +327,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     placeholder="+7 (999) 000-00-00"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="bg-slate-900/90 border-white/15 text-white placeholder-slate-500 text-sm"
+                    className="bg-white border-slate-200 text-slate-900 placeholder-slate-500 text-sm"
                   />
                 </div>
               </div>
@@ -337,12 +337,12 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                 <Button
                   type="submit"
                   disabled={submitMutation.isPending}
-                  className="button-motion w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/20 text-base"
+                  className="button-motion w-full bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/25 text-base"
                 >
                   {submitMutation.isPending ? 'Регистрация заявки...' : 'Зарегистрировать заявку и перейти к оплате'}
                 </Button>
-                <div className="text-center text-[11px] text-slate-400 mt-2.5 flex items-center justify-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                <div className="text-center text-[11px] text-slate-600 mt-2.5 flex items-center justify-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                   Данные защищены. Наградные документы отправляются на указанный e-mail.
                 </div>
               </div>
@@ -351,29 +351,29 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
         ) : (
           /* Post-submission PayKeeper screen */
           <div className="py-6 text-center space-y-5">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
+            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-600 flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-8 h-8" />
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold text-white font-serif">Заявка успешно зарегистрирована!</h3>
-              <p className="text-sm text-slate-300 mt-1">
-                Номер заявки в реестре: <span className="font-mono font-bold text-amber-400">{submissionResult.orderId}</span>
+              <h3 className="text-2xl font-bold text-slate-900 font-serif">Заявка успешно зарегистрирована!</h3>
+              <p className="text-sm text-slate-700 mt-1">
+                Номер заявки в реестре: <span className="font-mono font-bold text-amber-700">{submissionResult.orderId}</span>
               </p>
             </div>
 
-            <div className="p-5 glass-panel rounded-2xl border border-white/15 text-left text-xs text-slate-300 space-y-2 max-w-md mx-auto">
+            <div className="p-5 glass-panel rounded-2xl border border-slate-200 text-left text-xs text-slate-700 space-y-2 max-w-md mx-auto">
               <div className="flex justify-between">
                 <span>Конкурс:</span>
-                <span className="font-bold text-white">{currentContest?.title}</span>
+                <span className="font-bold text-slate-900">{currentContest?.title}</span>
               </div>
               <div className="flex justify-between">
                 <span>Участник:</span>
-                <span className="font-bold text-white">{participantName || collectiveName}</span>
+                <span className="font-bold text-slate-900">{participantName || collectiveName}</span>
               </div>
               <div className="flex justify-between">
                 <span>Сумма взноса:</span>
-                <span className="font-bold text-amber-400 text-sm">{submissionResult.paymentAmount} руб.</span>
+                <span className="font-bold text-amber-700 text-sm">{submissionResult.paymentAmount} руб.</span>
               </div>
             </div>
 
@@ -390,7 +390,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   });
                 }}
                 disabled={invoiceMutation.isPending}
-                className="button-motion w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/20 text-base flex items-center justify-center gap-2"
+                className="button-motion w-full bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/25 text-base flex items-center justify-center gap-2"
               >
                 <CreditCard className="w-5 h-5" />
                 {invoiceMutation.isPending ? 'Перенаправление в банк...' : 'Оплатить взнос онлайн (PayKeeper)'}
@@ -399,7 +399,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               <Button
                 variant="outline"
                 onClick={resetAndClose}
-                className="w-full border-white/20 hover:bg-white/10 text-slate-300"
+                className="w-full border-slate-300 hover:bg-slate-50 text-slate-700"
               >
                 Вернуться к конкурсам
               </Button>
