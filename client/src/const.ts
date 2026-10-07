@@ -298,10 +298,10 @@ export const PARTNERS_DATA: Partner[] = [
     logoKey: 'cap-ferret'
   },
   {
-    name: 'ЕВРОПЕЙСКАЯ СТУДИЯ',
-    country: 'Европа',
-    category: 'Культурная ассоциация',
-    url: 'https://triumph-org.ru/',
+    name: 'ПАРИЖСКАЯ РУССКАЯ КОНСЕРВАТОРИЯ',
+    country: 'Франция, Париж',
+    category: 'Академический партнер',
+    url: 'https://conservatoire-rachmaninoff.com/',
     logoKey: 'ec'
   },
   {
@@ -312,10 +312,10 @@ export const PARTNERS_DATA: Partner[] = [
     logoKey: 'litres'
   },
   {
-    name: 'ЗОММЕРШТАДИУМ',
-    country: 'Австрия',
-    category: 'Культурная ассоциация',
-    url: 'https://triumph-org.ru/',
+    name: 'СПб АКАДЕМИЯ ОБРАЗОВАНИЯ',
+    country: 'Россия, Санкт-Петербург',
+    category: 'Образовательный партнер',
+    url: 'https://spbappo.ru/',
     logoKey: 'sommerstudio'
   },
   {
@@ -333,24 +333,24 @@ export const PARTNERS_DATA: Partner[] = [
     logoKey: 'artcompass'
   },
   {
-    name: 'МЕЛОС',
-    country: 'Италия',
-    category: 'Культурная ассоциация',
-    url: 'https://triumph-org.ru/',
+    name: 'ФАБРИКА MODESTREET',
+    country: 'Россия',
+    category: 'Партнер сценических костюмов',
+    url: 'https://artcompass.ru/',
     logoKey: 'melos'
   },
   {
-    name: 'МЕЖДУНАРОДНЫЙ ТЕАТР',
-    country: 'Италия',
-    category: 'Культурная ассоциация',
-    url: 'https://triumph-org.ru/',
+    name: 'БИБЛИОТЕКА ЛИТРЕС',
+    country: 'Россия',
+    category: 'Информационный партнер',
+    url: 'https://www.litres.ru/',
     logoKey: 'teatro'
   },
   {
-    name: 'КУКЛА',
-    country: 'Нидерланды',
-    category: 'Культурная ассоциация',
-    url: 'https://triumph-org.ru/',
+    name: 'МЕЖДУНАРОДНЫЙ ФЕСТИВАЛЬ КАП-ФЕРРЕ',
+    country: 'Франция',
+    category: 'Фестивальный партнер',
+    url: 'https://www.capferretmusicfestival.com/',
     logoKey: 'koekla'
   }
 ];
