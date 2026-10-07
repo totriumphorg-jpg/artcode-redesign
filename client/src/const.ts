@@ -72,7 +72,7 @@ export interface Partner {
   country: string;
   category: string;
   url: string;
-  logoKey: 'cap-ferret' | 'ec' | 'litres' | 'sommerstudio' | 'obraztsova' | 'artcompass' | 'melos' | 'teatro' | 'koekla';
+  logoKey: 'cap-ferret' | 'ec' | 'litres' | 'sommerstudio' | 'obraztsova' | 'artcompass' | 'melos' | 'teatro' | 'koekla' | 'rachmaninoff' | 'rao';
 }
 
 export interface ReportItem {
@@ -301,8 +301,8 @@ export const PARTNERS_DATA: Partner[] = [
     name: 'ПАРИЖСКАЯ РУССКАЯ КОНСЕРВАТОРИЯ',
     country: 'Франция, Париж',
     category: 'Академический партнер',
-    url: 'https://conservatoire-rachmaninoff.com/',
-    logoKey: 'ec'
+    url: 'https://www.conservatoire-sr.com/en/',
+    logoKey: 'rachmaninoff'
   },
   {
     name: 'ЛИТРЕС',
@@ -312,11 +312,11 @@ export const PARTNERS_DATA: Partner[] = [
     logoKey: 'litres'
   },
   {
-    name: 'СПб АКАДЕМИЯ ОБРАЗОВАНИЯ',
-    country: 'Россия, Санкт-Петербург',
+    name: 'РОССИЙСКАЯ АКАДЕМИЯ ОБРАЗОВАНИЯ',
+    country: 'Россия, Москва',
     category: 'Образовательный партнер',
-    url: 'https://spbappo.ru/',
-    logoKey: 'sommerstudio'
+    url: 'https://rusacademedu.ru/',
+    logoKey: 'rao'
   },
   {
     name: 'АКАДЕМИЯ ЕЛЕНЫ ОБРАЗЦОВОЙ',
