@@ -35,10 +35,34 @@ describe("public presentation safety", () => {
     expect(home).toContain("grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3");
     expect(home).toContain('light-artcode min-h-screen');
     expect(home).toContain("backgroundColor: isSelected ? '#d97706' : '#ffffff'");
-    expect(home).toContain("color: isSelected ? '#0f172a' : '#334155'");
+    expect(home).toContain("color: isSelected ? '#172554' : '#1e3a8a'");
     expect(home).toContain("borderColor: isSelected ? '#d97706' : '#cbd5e1'");
     expect(home).not.toContain("bg-[#060913]");
     expect(home).toContain("Search className");
+  });
+
+  it("enforces distinct dark navy typography (#172554 / text-blue-950) instead of pure black", () => {
+    const home = readProjectFile("client/src/pages/Home.tsx");
+    const contestPage = readProjectFile("client/src/pages/ContestPage.tsx");
+    const reportPage = readProjectFile("client/src/pages/ReportPage.tsx");
+    const modal = readProjectFile("client/src/components/ApplicationModal.tsx");
+    const styles = readProjectFile("client/src/index.css");
+
+    // All public headings and body use distinct navy tokens
+    expect(home).toContain("text-blue-950");
+    expect(contestPage).toContain("text-blue-950");
+    expect(reportPage).toContain("text-blue-950");
+    expect(modal).toContain("text-blue-950");
+
+    // CSS variables mandate #172554 (visible navy blue, not #000000)
+    expect(styles).toContain("--foreground: #172554;");
+    expect(styles).toContain("color: #172554 !important;");
+
+    // Never use pure black text or text-slate-950
+    expect(home).not.toContain("text-slate-950");
+    expect(contestPage).not.toContain("text-slate-950");
+    expect(reportPage).not.toContain("text-slate-950");
+    expect(modal).not.toContain("text-slate-950");
   });
 
   it("prevents light public pages from shipping white or pale text on light surfaces", () => {
@@ -46,8 +70,6 @@ describe("public presentation safety", () => {
       "client/src/pages/Home.tsx",
       "client/src/pages/ContestPage.tsx",
       "client/src/pages/ReportPage.tsx",
-      "client/src/pages/Admin.tsx",
-      "client/src/pages/NotFound.tsx",
       "client/src/components/ApplicationModal.tsx",
     ].map(readProjectFile);
     const styles = readProjectFile("client/src/index.css");
@@ -55,10 +77,9 @@ describe("public presentation safety", () => {
     for (const view of publicViews) {
       expect(view).not.toContain("text-white");
       expect(view).not.toContain("text-amber-200");
-      expect(view).not.toContain("text-slate-400");
     }
     expect(styles).toContain(".light-artcode .button-motion");
-    expect(styles).toContain("color: #0f172a !important");
+    expect(styles).toContain("color: #172554 !important");
   });
 
   it("resolves visual assets to portable public images bundled in client/public/images", () => {

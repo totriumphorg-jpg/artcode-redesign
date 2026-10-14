@@ -33,17 +33,18 @@
 :root {
   --radius: 1rem;
   --background: #f8fafc;
-  --foreground: #182235;
+  /* Distinct deep navy (#172554 / rgb(23, 37, 84)) clearly perceived as navy blue, never pure black */
+  --foreground: #172554;
   --card: #ffffff;
-  --card-foreground: #182235;
+  --card-foreground: #172554;
   --popover: #ffffff;
-  --popover-foreground: #182235;
+  --popover-foreground: #172554;
   --primary: #d97706;
   --primary-foreground: #ffffff;
   --secondary: #eef2ff;
-  --secondary-foreground: #27324a;
+  --secondary-foreground: #1e3a8a;
   --muted: #f1f5f9;
-  --muted-foreground: #64748b;
+  --muted-foreground: #475569;
   --accent: #2563eb;
   --accent-foreground: #ffffff;
   --destructive: #dc2626;
@@ -58,17 +59,18 @@
   * { @apply border-border outline-ring/50; }
   body {
     background-color: #f8fafc;
-    color: #182235;
+    color: #172554;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-image:
-      radial-gradient(ellipse 62% 38% at 2% -4%, rgba(191, 219, 254, 0.62), transparent 70%),
-      radial-gradient(ellipse 44% 34% at 98% 2%, rgba(254, 243, 199, 0.68), transparent 68%),
-      radial-gradient(ellipse 58% 42% at 50% 110%, rgba(224, 231, 255, 0.54), transparent 68%);
+      radial-gradient(ellipse 62% 38% at 2% -4%, rgba(191, 219, 254, 0.58), transparent 70%),
+      radial-gradient(ellipse 44% 34% at 98% 2%, rgba(254, 243, 199, 0.62), transparent 68%),
+      radial-gradient(ellipse 58% 42% at 50% 110%, rgba(224, 231, 255, 0.50), transparent 68%);
     background-attachment: fixed;
   }
   h1, h2, h3, .font-serif {
     font-family: 'Playfair Display', Georgia, serif;
     letter-spacing: -0.02em;
+    color: #172554;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -94,44 +96,44 @@
   @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; max-width: 1280px; } }
 }
 
-/* Light editorial surface system: warm porcelain, translucent white cards, and quiet indigo depth. */
+/* Light editorial surface system: warm porcelain, translucent white cards, and distinct navy depth */
 .light-artcode {
   background: transparent;
-  color: #182235;
+  color: #172554;
 }
 
 .light-artcode .glass-panel,
 .light-artcode-modal .glass-panel {
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(148, 163, 184, 0.22);
-  box-shadow: 0 18px 40px -30px rgba(15, 23, 42, 0.42);
+  box-shadow: 0 14px 32px -24px rgba(23, 37, 84, 0.28);
 }
 
 .light-artcode .glass-panel-hover { transition: transform 260ms var(--ease-out), box-shadow 260ms var(--ease-out), border-color 260ms var(--ease-out); }
 .light-artcode .glass-panel-hover:hover {
   background: #ffffff;
   border-color: rgba(217, 119, 6, 0.42);
-  transform: translateY(-5px);
-  box-shadow: 0 28px 58px -32px rgba(30, 64, 175, 0.34), 0 14px 28px -24px rgba(217, 119, 6, 0.28);
+  transform: translateY(-4px);
+  box-shadow: 0 22px 48px -28px rgba(30, 64, 175, 0.28), 0 12px 24px -20px rgba(217, 119, 6, 0.24);
 }
 
-.light-artcode .stage-glow-amber { box-shadow: 0 22px 48px -30px rgba(217, 119, 6, 0.38); }
-.light-artcode .stage-glow-blue { box-shadow: 0 26px 54px -32px rgba(37, 99, 235, 0.35); }
+.light-artcode .stage-glow-amber { box-shadow: 0 18px 40px -26px rgba(217, 119, 6, 0.35); }
+.light-artcode .stage-glow-blue { box-shadow: 0 20px 44px -28px rgba(30, 58, 138, 0.32); }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #f59e0b 0%, #b45309 48%, #92400e 100%);
+  background: linear-gradient(135deg, #d97706 0%, #b45309 48%, #92400e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .blue-gradient-text {
-  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #0e7490 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 52%, #0284c7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Interactive button system: physical response and a restrained light sweep. */
+/* Interactive button system: physical response and a restrained light sweep */
 .button-motion {
   position: relative;
   isolation: isolate;
@@ -140,8 +142,8 @@
 }
 .light-artcode .button-motion,
 .light-artcode-modal .button-motion {
-  /* Non-negotiable readability guard for the light public interface. */
-  color: #0f172a !important;
+  /* Visible navy text on amber / bright buttons (#172554), distinctly blue */
+  color: #172554 !important;
 }
 .button-motion::after {
   content: '';
