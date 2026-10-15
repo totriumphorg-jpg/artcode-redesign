@@ -45,6 +45,8 @@ describe("public presentation safety", () => {
     const home = readProjectFile("client/src/pages/Home.tsx");
     const contestPage = readProjectFile("client/src/pages/ContestPage.tsx");
     const reportPage = readProjectFile("client/src/pages/ReportPage.tsx");
+    const adminPage = readProjectFile("client/src/pages/Admin.tsx");
+    const notFoundPage = readProjectFile("client/src/pages/NotFound.tsx");
     const modal = readProjectFile("client/src/components/ApplicationModal.tsx");
     const styles = readProjectFile("client/src/index.css");
 
@@ -52,6 +54,8 @@ describe("public presentation safety", () => {
     expect(home).toContain("text-blue-950");
     expect(contestPage).toContain("text-blue-950");
     expect(reportPage).toContain("text-blue-950");
+    expect(adminPage).toContain("text-blue-950");
+    expect(notFoundPage).toContain("text-blue-950");
     expect(modal).toContain("text-blue-950");
 
     // CSS variables mandate #172554 (visible navy blue, not #000000)
@@ -62,6 +66,11 @@ describe("public presentation safety", () => {
     expect(home).not.toContain("text-slate-950");
     expect(contestPage).not.toContain("text-slate-950");
     expect(reportPage).not.toContain("text-slate-950");
+    expect(adminPage).not.toContain("text-slate-950");
+    expect(adminPage).not.toContain("text-slate-900");
+    expect(adminPage).not.toContain("text-slate-800");
+    expect(notFoundPage).not.toContain("text-slate-950");
+    expect(notFoundPage).not.toContain("text-slate-900");
     expect(modal).not.toContain("text-slate-950");
   });
 

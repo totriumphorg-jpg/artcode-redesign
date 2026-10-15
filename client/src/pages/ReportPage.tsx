@@ -102,7 +102,7 @@ export default function ReportPage() {
               {report.title}
             </h1>
 
-            <div className="p-4 sm:p-5 glass-panel rounded-2xl border border-slate-200 text-slate-800 text-sm sm:text-base leading-relaxed mb-6">
+            <div className="p-4 sm:p-5 glass-panel rounded-2xl border border-slate-200 text-blue-950 text-sm sm:text-base leading-relaxed mb-6">
               <div className="font-bold text-amber-700 mb-1.5 flex items-center gap-1.5 text-sm sm:text-base">
                 <ShieldCheck className="w-4 h-4 text-amber-700" /> Резюме оргкомитета
               </div>

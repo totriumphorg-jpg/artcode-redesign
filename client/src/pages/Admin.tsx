@@ -164,7 +164,7 @@ export default function Admin() {
           <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Lock className="w-7 h-7" />
           </div>
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">Панель управления ARTCODE</h2>
+          <h2 className="text-2xl font-bold text-blue-950 mb-2">Панель управления ARTCODE</h2>
           <p className="text-slate-600 mb-6 text-sm">
             Доступ предназначен для администраторов: создание сезонных конкурсов, редактирование положений, отчетов и раздельная выгрузка заявок в CSV.
           </p>
@@ -185,7 +185,7 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-100 text-blue-950 flex flex-col font-sans">
       {/* Top bar */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -227,7 +227,7 @@ export default function Admin() {
               className={`px-4 py-2 text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === 'applications'
                   ? 'bg-blue-100 text-blue-950'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-slate-600 hover:text-blue-950 hover:bg-slate-100'
               }`}
             >
               <Users className="w-4 h-4" />
@@ -238,7 +238,7 @@ export default function Admin() {
               className={`px-4 py-2 text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === 'contests'
                   ? 'bg-blue-100 text-blue-950'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-slate-600 hover:text-blue-950 hover:bg-slate-100'
               }`}
             >
               <Layers className="w-4 h-4" />
@@ -249,7 +249,7 @@ export default function Admin() {
               className={`px-4 py-2 text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === 'regulations'
                   ? 'bg-blue-100 text-blue-950'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-slate-600 hover:text-blue-950 hover:bg-slate-100'
               }`}
             >
               <FileText className="w-4 h-4" />
@@ -260,7 +260,7 @@ export default function Admin() {
               className={`px-4 py-2 text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === 'reports'
                   ? 'bg-blue-100 text-blue-950'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-slate-600 hover:text-blue-950 hover:bg-slate-100'
               }`}
             >
               <CheckCircle2 className="w-4 h-4" />
@@ -271,7 +271,7 @@ export default function Admin() {
               className={`px-4 py-2 text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === 'paykeeper'
                   ? 'bg-blue-100 text-blue-950'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-slate-600 hover:text-blue-950 hover:bg-slate-100'
               }`}
             >
               <CreditCard className="w-4 h-4" />
@@ -286,7 +286,7 @@ export default function Admin() {
         <main className="container mx-auto px-4 py-8 flex-grow">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">Поступившие заявки участников</h1>
+              <h1 className="text-2xl font-bold text-blue-950">Поступившие заявки участников</h1>
               <p className="text-sm text-slate-600 mt-1">
                 Выберите конкретный конкурс (art, dance, vocal и др.) и скачайте заявки отдельным CSV-файлом
               </p>
@@ -312,7 +312,7 @@ export default function Admin() {
               <select
                 value={selectedAppContestSlug}
                 onChange={(e) => setSelectedAppContestSlug(e.target.value)}
-                className="border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium bg-slate-50 focus:bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium bg-slate-50 focus:bg-white text-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="all">Все конкурсы (общий список)</option>
                 {contestsList?.map((c) => (
@@ -332,7 +332,7 @@ export default function Admin() {
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm text-slate-700">
-                <thead className="bg-slate-50 text-slate-900 font-bold border-b border-slate-200 text-xs uppercase tracking-wider">
+                <thead className="bg-slate-50 text-blue-950 font-bold border-b border-slate-200 text-xs uppercase tracking-wider">
                   <tr>
                     <th className="px-4 py-3">ID</th>
                     <th className="px-4 py-3">Конкурс</th>
@@ -350,16 +350,16 @@ export default function Admin() {
                       <tr key={app.id} className="hover:bg-slate-50/80 transition-colors">
                         <td className="px-4 py-3 font-mono text-xs text-slate-500">#{app.id}</td>
                         <td className="px-4 py-3">
-                          <span className="font-semibold text-slate-900 block">{app.contestTitle}</span>
+                          <span className="font-semibold text-blue-950 block">{app.contestTitle}</span>
                           <span className="text-xs text-slate-500">{app.discipline}</span>
                         </td>
                         <td className="px-4 py-3">
-                          <div className="font-bold text-slate-900">{app.participantName}</div>
+                          <div className="font-bold text-blue-950">{app.participantName}</div>
                           {app.collectiveName && <div className="text-xs text-slate-500">{app.collectiveName}</div>}
                           <div className="text-xs text-slate-600">Возраст: {app.ageCategory}</div>
                         </td>
                         <td className="px-4 py-3">
-                          <div className="font-medium text-slate-900">{app.nomination}</div>
+                          <div className="font-medium text-blue-950">{app.nomination}</div>
                           <div className="text-xs text-slate-500">{app.performanceTitle}</div>
                         </td>
                         <td className="px-4 py-3 text-xs">{app.city}</td>
@@ -409,7 +409,7 @@ export default function Admin() {
         <main className="container mx-auto px-4 py-8 flex-grow">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">Управление конкурсами</h1>
+              <h1 className="text-2xl font-bold text-blue-950">Управление конкурсами</h1>
               <p className="text-sm text-slate-600 mt-1">
                 Создавайте конкурсы или копируйте любой проект для сезонных программ (например: «В гостях у Снегурочки»)
               </p>
@@ -432,7 +432,7 @@ export default function Admin() {
                     </span>
                   </div>
 
-                  <h3 className="font-bold text-lg text-slate-900 mb-2 leading-snug">{contest.title}</h3>
+                  <h3 className="font-bold text-lg text-blue-950 mb-2 leading-snug">{contest.title}</h3>
                   <p className="text-xs text-slate-500 mb-4 line-clamp-2">{contest.description}</p>
 
                   <div className="text-xs text-slate-600 space-y-1 mb-4 p-3 bg-slate-50 rounded-xl">
@@ -487,7 +487,7 @@ export default function Admin() {
           {showDuplicateModal !== null && (
             <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
               <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl border border-slate-200">
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Создать копию конкурса</h3>
+                <h3 className="text-xl font-bold text-blue-950 mb-2">Создать копию конкурса</h3>
                 <p className="text-xs text-slate-600 mb-4">
                   Все положения и настройки будут скопированы в новый конкурс. Вы сможете изменить название, праздничное наполнение и даты.
                 </p>
@@ -544,7 +544,7 @@ export default function Admin() {
           {editingContestModal !== null && (
             <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
               <div className="bg-white rounded-2xl max-w-xl w-full p-6 shadow-xl border border-slate-200 max-h-[90vh] overflow-y-auto">
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Редактировать конкурс</h3>
+                <h3 className="text-xl font-bold text-blue-950 mb-2">Редактировать конкурс</h3>
                 <p className="text-xs text-slate-600 mb-4">
                   Измените название, сроки проведения, размер организационного взноса, состав экспертного совета или описание.
                 </p>
@@ -648,7 +648,7 @@ export default function Admin() {
         <main className="container mx-auto px-4 py-8 flex-grow">
           <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">Редактирование положений конкурсов</h1>
+              <h1 className="text-2xl font-bold text-blue-950">Редактирование положений конкурсов</h1>
               <p className="text-sm text-slate-600 mt-1">
                 Выберите конкурс для редактирования пунктов положения (Цели, Номинации, Критерии, Финансовые условия)
               </p>
@@ -657,7 +657,7 @@ export default function Admin() {
             <select
               value={regContestSlug}
               onChange={(e) => setRegContestSlug(e.target.value)}
-              className="border border-slate-300 rounded-xl px-4 py-2 text-sm font-semibold bg-white text-slate-900"
+              className="border border-slate-300 rounded-xl px-4 py-2 text-sm font-semibold bg-white text-blue-950"
             >
               {contestsList?.map((c) => (
                 <option key={c.id} value={c.slug}>
@@ -670,7 +670,7 @@ export default function Admin() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Sections list */}
             <div className="lg:col-span-1 space-y-3">
-              <h3 className="font-bold text-slate-900 text-sm uppercase tracking-wider mb-2">Разделы положения</h3>
+              <h3 className="font-bold text-blue-950 text-sm uppercase tracking-wider mb-2">Разделы положения</h3>
               {currentContestRegs?.regulations?.map((reg) => (
                 <div
                   key={reg.id}
@@ -681,7 +681,7 @@ export default function Admin() {
                       : 'bg-white border-slate-200 hover:border-slate-300'
                   }`}
                 >
-                  <div className="font-bold text-sm text-slate-900">{reg.title}</div>
+                  <div className="font-bold text-sm text-blue-950">{reg.title}</div>
                   <div className="text-xs text-slate-500 line-clamp-1 mt-1">{reg.content}</div>
                 </div>
               ))}
@@ -691,7 +691,7 @@ export default function Admin() {
             <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
               {editingRegSection ? (
                 <div>
-                  <h3 className="font-bold text-lg text-slate-900 mb-4">Редактирование раздела: {editingRegSection.title}</h3>
+                  <h3 className="font-bold text-lg text-blue-950 mb-4">Редактирование раздела: {editingRegSection.title}</h3>
 
                   <div className="space-y-4">
                     <div>
@@ -749,7 +749,7 @@ export default function Admin() {
       {activeTab === 'reports' && (
         <main className="container mx-auto px-4 py-8 flex-grow">
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-slate-900">Итоги и отчеты конкурсов</h1>
+            <h1 className="text-2xl font-bold text-blue-950">Итоги и отчеты конкурсов</h1>
             <p className="text-sm text-slate-600 mt-1">
               Добавляйте отчеты с прошедших конкурсов, прописывайте даты и полные тексты итогов (каждый отчет кликабелен)
             </p>
@@ -758,7 +758,7 @@ export default function Admin() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Form */}
             <div className="lg:col-span-1 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-              <h3 className="font-bold text-base text-slate-900 mb-4 flex items-center gap-2">
+              <h3 className="font-bold text-base text-blue-950 mb-4 flex items-center gap-2">
                 <Plus className="w-4 h-4 text-blue-600" /> Добавить отчет о результатах
               </h3>
 
@@ -870,7 +870,7 @@ export default function Admin() {
 
             {/* List */}
             <div className="lg:col-span-2 space-y-4">
-              <h3 className="font-bold text-base text-slate-900">Опубликованные отчеты</h3>
+              <h3 className="font-bold text-base text-blue-950">Опубликованные отчеты</h3>
               {reportsList?.map((r) => (
                 <div key={r.id} className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
                   <div className="flex items-center justify-between gap-3 mb-2">
@@ -879,7 +879,7 @@ export default function Admin() {
                     </span>
                     <span className="text-xs text-slate-500 font-medium">Дата: {r.publishedDate}</span>
                   </div>
-                  <h4 className="font-bold text-slate-900 text-base mb-1">{r.title}</h4>
+                  <h4 className="font-bold text-blue-950 text-base mb-1">{r.title}</h4>
                   <p className="text-xs text-slate-600 mb-3">{r.summary}</p>
                   <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-100">
                     <span className="text-slate-600 font-mono">/report/{r.slug}</span>
@@ -903,7 +903,7 @@ export default function Admin() {
                 <CreditCard className="w-6 h-6" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-slate-900">Интеграция с платежной системой PayKeeper</h1>
+                <h1 className="text-2xl font-bold text-blue-950">Интеграция с платежной системой PayKeeper</h1>
                 <p className="text-sm text-slate-600">
                   Серверный модуль шлюза PayKeeper подготовлен и соединен с базой заявок
                 </p>
@@ -919,7 +919,7 @@ export default function Admin() {
               </div>
 
               <div className="border border-slate-200 rounded-xl p-5 space-y-4">
-                <h3 className="font-bold text-slate-900 text-base">Данные для подключения от Алексея:</h3>
+                <h3 className="font-bold text-blue-950 text-base">Данные для подключения от Алексея:</h3>
                 <div>
                   <label className="text-xs font-bold text-slate-700 block mb-1">Серверный URL PayKeeper (PAYKEEPER_SERVER_URL):</label>
                   <Input placeholder="https://<имя-магазина>.server.paykeeper.ru" disabled className="bg-slate-50 border-slate-300" />
@@ -940,7 +940,7 @@ export default function Admin() {
 
                 <div>
                   <label className="text-xs font-bold text-slate-700 block mb-1">URL POST-уведомлений, который нужно указать в личном кабинете PayKeeper:</label>
-                  <div className="p-2.5 bg-slate-100 rounded-lg font-mono text-xs text-slate-800 break-all select-all">
+                  <div className="p-2.5 bg-slate-100 rounded-lg font-mono text-xs text-blue-950 break-all select-all">
                     https://artcodered-bzbfykup.manus.space/api/paykeeper/notification
                   </div>
                   <span className="text-xs text-slate-500 mt-1 block">Дополнительно в защищенных переменных сервера задается PAYKEEPER_RESULT_CALLBACK_URL для возврата пользователя после оплаты.</span>
