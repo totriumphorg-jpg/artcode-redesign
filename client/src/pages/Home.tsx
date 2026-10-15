@@ -298,7 +298,7 @@ export default function Home() {
                     onClick={() => setActiveDiscipline(tab.id)}
                     style={{
                       backgroundColor: isSelected ? '#d97706' : '#ffffff',
-                      color: isSelected ? '#172554' : '#1e3a8a',
+                      color: isSelected ? '#123f9c' : '#1646a8',
                       borderColor: isSelected ? '#d97706' : '#cbd5e1',
                     }}
                     className={`max-w-full whitespace-nowrap px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl border text-sm font-bold transition-all shadow-sm flex items-center gap-2 ${

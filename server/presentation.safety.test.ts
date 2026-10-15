@@ -35,13 +35,13 @@ describe("public presentation safety", () => {
     expect(home).toContain("grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3");
     expect(home).toContain('light-artcode min-h-screen');
     expect(home).toContain("backgroundColor: isSelected ? '#d97706' : '#ffffff'");
-    expect(home).toContain("color: isSelected ? '#172554' : '#1e3a8a'");
+    expect(home).toContain("color: isSelected ? '#123f9c' : '#1646a8'");
     expect(home).toContain("borderColor: isSelected ? '#d97706' : '#cbd5e1'");
     expect(home).not.toContain("bg-[#060913]");
     expect(home).toContain("Search className");
   });
 
-  it("enforces distinct dark navy typography (#172554 / text-blue-950) instead of pure black", () => {
+  it("enforces clearly visible blue typography (#123f9c / text-blue-950) instead of pure black", () => {
     const home = readProjectFile("client/src/pages/Home.tsx");
     const contestPage = readProjectFile("client/src/pages/ContestPage.tsx");
     const reportPage = readProjectFile("client/src/pages/ReportPage.tsx");
@@ -58,9 +58,9 @@ describe("public presentation safety", () => {
     expect(notFoundPage).toContain("text-blue-950");
     expect(modal).toContain("text-blue-950");
 
-    // CSS variables mandate #172554 (visible navy blue, not #000000)
-    expect(styles).toContain("--foreground: #172554;");
-    expect(styles).toContain("color: #172554 !important;");
+    // CSS variables mandate a clearly blue tone, not near-black text
+    expect(styles).toContain("--foreground: #123f9c;");
+    expect(styles).toContain("color: #123f9c !important;");
 
     // Never use pure black text or text-slate-950
     expect(home).not.toContain("text-slate-950");
@@ -88,7 +88,7 @@ describe("public presentation safety", () => {
       expect(view).not.toContain("text-amber-200");
     }
     expect(styles).toContain(".light-artcode .button-motion");
-    expect(styles).toContain("color: #172554 !important");
+    expect(styles).toContain("color: #123f9c !important");
   });
 
   it("resolves visual assets to portable public images bundled in client/public/images", () => {

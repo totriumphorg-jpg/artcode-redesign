@@ -33,16 +33,16 @@
 :root {
   --radius: 1rem;
   --background: #f8fafc;
-  /* Distinct deep navy (#172554 / rgb(23, 37, 84)) clearly perceived as navy blue, never pure black */
-  --foreground: #172554;
+  /* Clearly visible blue navy (#123f9c), intentionally distinct from black */
+  --foreground: #123f9c;
   --card: #ffffff;
-  --card-foreground: #172554;
+  --card-foreground: #123f9c;
   --popover: #ffffff;
-  --popover-foreground: #172554;
+  --popover-foreground: #123f9c;
   --primary: #d97706;
   --primary-foreground: #ffffff;
   --secondary: #eef2ff;
-  --secondary-foreground: #1e3a8a;
+  --secondary-foreground: #1646a8;
   --muted: #f1f5f9;
   --muted-foreground: #475569;
   --accent: #2563eb;
@@ -59,7 +59,7 @@
   * { @apply border-border outline-ring/50; }
   body {
     background-color: #f8fafc;
-    color: #172554;
+    color: #123f9c;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-image:
       radial-gradient(ellipse 62% 38% at 2% -4%, rgba(191, 219, 254, 0.58), transparent 70%),
@@ -70,7 +70,7 @@
   h1, h2, h3, .font-serif {
     font-family: 'Playfair Display', Georgia, serif;
     letter-spacing: -0.02em;
-    color: #172554;
+    color: #123f9c;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -99,7 +99,7 @@
 /* Light editorial surface system: warm porcelain, translucent white cards, and distinct navy depth */
 .light-artcode {
   background: transparent;
-  color: #172554;
+  color: #123f9c;
 }
 
 .light-artcode .glass-panel,
@@ -128,7 +128,7 @@
   -webkit-text-fill-color: transparent;
 }
 .blue-gradient-text {
-  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 52%, #0284c7 100%);
+  background: linear-gradient(135deg, #1646a8 0%, #2563eb 52%, #0284c7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -142,9 +142,15 @@
 }
 .light-artcode .button-motion,
 .light-artcode-modal .button-motion {
-  /* Visible navy text on amber / bright buttons (#172554), distinctly blue */
-  color: #172554 !important;
+  /* Clearly blue text on amber / bright buttons, never black */
+  color: #123f9c !important;
 }
+
+/* Tailwind's blue-950 is too close to black for client review; keep the blue hue unmistakable. */
+.light-artcode .text-blue-950,
+.light-artcode-modal .text-blue-950 { color: #123f9c !important; }
+.light-artcode .text-blue-900,
+.light-artcode-modal .text-blue-900 { color: #1646a8 !important; }
 .button-motion::after {
   content: '';
   position: absolute;
