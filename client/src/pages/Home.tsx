@@ -140,8 +140,8 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <img
               src={ASSETS.triumphLogo}
-              alt="ТО Триумф"
-              className="h-9 w-auto object-contain hidden md:block opacity-90 hover:opacity-100 transition-opacity"
+              alt="Творческое объединение «Триумф»"
+              className="h-7 sm:h-9 w-auto max-w-[112px] sm:max-w-[155px] object-contain opacity-95 hover:opacity-100 transition-opacity"
             />
             <Button
               onClick={() => openApplication('misteriya-zvuka')}
@@ -717,8 +717,12 @@ export default function Home() {
           {/* Live Contact Banner / Card */}
           <div className="mb-8 p-5 sm:p-6 rounded-2xl bg-amber-50/75 shadow-md flex flex-col lg:flex-row items-center justify-between gap-4 border border-amber-200/90">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-white p-2 flex items-center justify-center border border-slate-200 shadow-sm flex-shrink-0">
-                <img src={ASSETS.triumphLogo} alt="ТО Триумф" className="h-9 w-auto object-contain" />
+              <div className="w-[132px] sm:w-[170px] flex-shrink-0 flex items-center justify-center">
+                <img
+                  src={ASSETS.triumphLogo}
+                  alt="Творческое объединение «Триумф»"
+                  className="w-full h-auto object-contain"
+                />
               </div>
               <div>
                 <div className="text-xs font-bold uppercase tracking-wider text-amber-700">Официальный организатор</div>

@@ -127,7 +127,11 @@ export default function ContestPage() {
           </div>
 
           <div className="flex items-center gap-3 flex-shrink-0">
-            <img src={ASSETS.triumphLogo} alt="ТО Триумф" className="h-8 w-auto object-contain hidden md:block opacity-90" />
+            <img
+              src={ASSETS.triumphLogo}
+              alt="Творческое объединение «Триумф»"
+              className="h-7 sm:h-8 w-auto max-w-[120px] sm:max-w-[150px] object-contain opacity-95"
+            />
             <Button
               onClick={() => setIsModalOpen(true)}
               className="button-motion bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-blue-950 font-bold px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm shadow-md"

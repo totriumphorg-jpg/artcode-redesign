@@ -4,7 +4,7 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '') + '/';
 export const ASSETS = {
   hero: `${base}images/hero-creative-stage.jpg`,
   heroMobile: `${base}images/hero-creative-stage-mobile.jpg`,
-  triumphLogo: `${base}images/triumph-logo.svg`,
+  triumphLogo: `${base}images/triumph-logo-horizontal.svg`,
   disciplines: {
     vocal: `${base}images/vocal-competition.jpg`,
     folkVocal: `${base}images/folk-academic-vocal-headsafe.jpg`,
