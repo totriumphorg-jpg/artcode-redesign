@@ -500,9 +500,9 @@ export default function Home() {
       </section>
 
       {/* Expert Council Slider */}
-      <section id="jury" className="py-10 sm:py-14 md:py-16 border-b border-slate-200/80 relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
+      <section id="jury" className="py-8 sm:py-10 md:py-12 border-b border-slate-200/80 relative">
+        <div className="container mx-auto px-3 sm:px-5 lg:px-6">
+          <div className="max-w-7xl mx-auto">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6 sm:mb-8">
               <div>
                 <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/10 text-amber-700 border border-amber-200">
@@ -520,14 +520,14 @@ export default function Home() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={prevJurySlide}
-                  className="p-2.5 rounded-xl glass-panel border border-slate-200 hover:bg-slate-50 text-blue-950 transition-colors shadow-sm"
+                  className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-300 hover:bg-amber-500/20 text-amber-700 transition-colors shadow-sm"
                   aria-label="Предыдущий эксперт"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={nextJurySlide}
-                  className="p-2.5 rounded-xl glass-panel border border-slate-200 hover:bg-slate-50 text-blue-950 transition-colors shadow-sm"
+                  className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-300 hover:bg-amber-500/20 text-amber-700 transition-colors shadow-sm"
                   aria-label="Следующий эксперт"
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -541,7 +541,7 @@ export default function Home() {
               const imageSrc = getJuryImage(currentJury.id);
 
               return (
-                <div className="glass-panel rounded-2xl border border-slate-200 p-5 sm:p-7 shadow-lg flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                <div className="glass-panel rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-lg flex flex-col md:flex-row items-center gap-4 md:gap-6">
                   <div className="w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0 border-2 border-amber-500/40 shadow-md stage-glow-amber">
                     <img
                       src={imageSrc}
@@ -625,9 +625,9 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-10 sm:py-14 md:py-16 border-b border-slate-200/80">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
+      <section id="faq" className="py-8 sm:py-10 md:py-12 border-b border-slate-200/80">
+        <div className="container mx-auto px-3 sm:px-5 lg:px-6">
+          <div className="max-w-7xl mx-auto">
             <div className="text-center mb-6 sm:mb-8">
               <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/10 text-blue-800 border border-blue-200">
                 Помощь
@@ -646,7 +646,7 @@ export default function Home() {
                 return (
                   <div
                     key={idx}
-                    className="glass-panel rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden"
+                    className="glass-panel rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden self-start h-fit"
                   >
                     <button
                       onClick={() => setExpandedFaq(isOpen ? null : idx)}
@@ -661,7 +661,7 @@ export default function Home() {
                       />
                     </button>
                     {isOpen && (
-                      <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/80">
+                      <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/80 bg-transparent">
                         {item.a}
                       </div>
                     )}
@@ -674,9 +674,9 @@ export default function Home() {
       </section>
 
       {/* Partners Section */}
-      <section id="partners" className="py-8 sm:py-10 bg-slate-100/80 border-b border-slate-200/80">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center mb-5">
+      <section id="partners" className="py-7 sm:py-8 bg-slate-100/80 border-b border-slate-200/80">
+        <div className="container mx-auto px-3 sm:px-5 lg:px-6">
+          <div className="max-w-7xl mx-auto text-center mb-4">
             <span className="text-xs font-bold uppercase tracking-widest text-slate-600">
               Международное сотрудничество
             </span>
@@ -692,7 +692,7 @@ export default function Home() {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3.5 rounded-2xl border border-slate-200/80 glass-panel hover:border-amber-400/50 hover:shadow-md transition-all text-center flex flex-col items-center justify-between group h-full"
+                className="p-3.5 rounded-2xl border border-blue-200/80 bg-blue-50/70 hover:border-amber-400/50 hover:bg-white hover:shadow-md transition-all text-center flex flex-col items-center justify-between group h-full"
               >
                 <div className="w-14 h-10 flex items-center justify-center mb-1.5">
                   {logoSrc ? (
@@ -702,8 +702,8 @@ export default function Home() {
                   )}
                 </div>
                 <div className="flex flex-col items-center">
-                  <span className="text-xs font-bold text-blue-950 group-hover:text-amber-700 transition-colors line-clamp-2">{partner.name}</span>
-                  <span className="text-[11px] text-slate-500 mt-0.5">{partner.country}</span>
+                  <span className="text-sm font-bold text-blue-950 group-hover:text-amber-700 transition-colors line-clamp-2">{partner.name}</span>
+                  <span className="text-xs text-slate-500 mt-0.5">{partner.country}</span>
                 </div>
               </a>
             );})}
@@ -715,7 +715,7 @@ export default function Home() {
       <footer className="bg-gradient-to-b from-white to-slate-50 text-slate-700 py-10 mt-auto border-t border-slate-200/90 shadow-inner">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Live Contact Banner / Card */}
-          <div className="mb-8 p-5 sm:p-6 rounded-2xl bg-amber-50/75 shadow-md flex flex-col lg:flex-row items-center justify-between gap-4 border border-amber-200/90">
+          <div className="mb-6 p-5 sm:p-6 rounded-2xl bg-blue-50/90 shadow-md flex flex-col lg:flex-row items-center justify-between gap-4 border border-blue-200/90">
             <div className="flex items-center gap-4">
               <div className="w-[132px] sm:w-[170px] flex-shrink-0 flex items-center justify-center">
                 <img

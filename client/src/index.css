@@ -142,13 +142,13 @@
 }
 .light-artcode .button-motion,
 .light-artcode-modal .button-motion {
-  /* Clearly blue text on amber / bright buttons, never black */
-  color: #123f9c !important;
+  /* Previous calmer navy for bold CTA labels */
+  color: #172554 !important;
 }
 
-/* Tailwind's blue-950 is too close to black for client review; keep the blue hue unmistakable. */
+/* Restore the previous calmer navy for bold heading labels. */
 .light-artcode .text-blue-950,
-.light-artcode-modal .text-blue-950 { color: #123f9c !important; }
+.light-artcode-modal .text-blue-950 { color: #172554 !important; }
 .light-artcode .text-blue-900,
 .light-artcode-modal .text-blue-900 { color: #1646a8 !important; }
 .button-motion::after {

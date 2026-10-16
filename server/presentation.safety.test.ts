@@ -58,9 +58,9 @@ describe("public presentation safety", () => {
     expect(notFoundPage).toContain("text-blue-950");
     expect(modal).toContain("text-blue-950");
 
-    // CSS variables mandate a clearly blue tone, not near-black text
+    // CSS variables keep the site body blue while bold labels use the previous calmer navy
     expect(styles).toContain("--foreground: #123f9c;");
-    expect(styles).toContain("color: #123f9c !important;");
+    expect(styles).toContain("color: #172554 !important;");
 
     // Never use pure black text or text-slate-950
     expect(home).not.toContain("text-slate-950");
@@ -88,7 +88,7 @@ describe("public presentation safety", () => {
       expect(view).not.toContain("text-amber-200");
     }
     expect(styles).toContain(".light-artcode .button-motion");
-    expect(styles).toContain("color: #123f9c !important");
+    expect(styles).toContain("color: #172554 !important");
   });
 
   it("resolves visual assets to portable public images bundled in client/public/images", () => {
