@@ -10,6 +10,7 @@ import {
 } from '@/const';
 import { ASSETS, getDisciplineImage, getJuryImage } from '@/assets';
 import { ApplicationModal } from '@/components/ApplicationModal';
+import { ReportModal } from '@/components/ReportModal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -43,6 +44,8 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedContestSlug, setSelectedContestSlug] = useState<string>('misteriya-zvuka');
+  const [isReportModalOpen, setIsReportModalOpen] = useState<boolean>(false);
+  const [selectedReportSlug, setSelectedReportSlug] = useState<string>('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [jurySlideIndex, setJurySlideIndex] = useState<number>(0);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -68,6 +71,11 @@ export default function Home() {
   const openApplication = (slug: string) => {
     setSelectedContestSlug(slug);
     setIsModalOpen(true);
+  };
+
+  const openReport = (slug: string) => {
+    setSelectedReportSlug(slug);
+    setIsReportModalOpen(true);
   };
 
   const nextJurySlide = () => {
@@ -591,10 +599,11 @@ export default function Home() {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
               {reports.map((report) => (
-                <Link
+                <button
                   key={report.id}
-                  href={`/report/${report.slug}`}
-                  className="glass-panel glass-panel-hover rounded-2xl border border-slate-200/80 p-5 shadow-sm transition-all flex flex-col justify-between group"
+                  type="button"
+                  onClick={() => openReport(report.slug)}
+                  className="glass-panel glass-panel-hover rounded-2xl border border-slate-200/80 p-5 shadow-sm transition-all flex flex-col justify-between group text-left w-full"
                 >
                   <div>
                     <div className="flex items-center justify-between text-xs text-slate-500 mb-2.5">
@@ -617,7 +626,7 @@ export default function Home() {
                     <span>Открыть отчет</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
-                </Link>
+                </button>
               ))}
             </div>
           </div>
@@ -807,6 +816,12 @@ export default function Home() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         defaultContestId={selectedContestSlug}
+      />
+
+      <ReportModal
+        isOpen={isReportModalOpen}
+        onClose={() => setIsReportModalOpen(false)}
+        slug={selectedReportSlug}
       />
     </div>
   );
