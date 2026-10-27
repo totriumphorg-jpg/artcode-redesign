@@ -19,6 +19,7 @@ import {
   Sparkles,
   Award,
   Lock,
+  Download,
 } from 'lucide-react';
 
 export default function ContestPage() {
@@ -258,13 +259,23 @@ export default function ContestPage() {
       </section>
 
       {/* Official Regulations Accordion */}
-      <section id="regulations" className="py-10 sm:py-14 border-b border-slate-200/80">
+      <section id="regulations" className="scroll-mt-24 py-10 sm:py-14 border-b border-slate-200/80">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-6 sm:mb-8">
               <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/10 text-amber-700 border border-amber-200">
                 Официальный документ
               </span>
+              <div className="mt-3">
+                <a
+                  href={`/documents/${slug}-polozhenie.docx`}
+                  download={`${slug}-polozhenie.docx`}
+                  className="button-motion inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-950 font-bold text-xs sm:text-sm shadow-sm"
+                >
+                  <Download className="w-4 h-4" />
+                  Скачать положение
+                </a>
+              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">
                 Положение конкурса
               </h2>

@@ -11,6 +11,7 @@ import {
 import { ASSETS, getDisciplineImage, getJuryImage } from '@/assets';
 import { ApplicationModal } from '@/components/ApplicationModal';
 import { ReportModal } from '@/components/ReportModal';
+import { ParticipationInfoModal } from '@/components/ParticipationInfoModal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -49,6 +50,7 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [jurySlideIndex, setJurySlideIndex] = useState<number>(0);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const [participationInfo, setParticipationInfo] = useState<'video' | 'hosting' | null>(null);
 
   // Load dynamic contests from DB if available
   const { data: dbContests } = trpc.contests.list.useQuery();
@@ -76,6 +78,10 @@ export default function Home() {
   const openReport = (slug: string) => {
     setSelectedReportSlug(slug);
     setIsReportModalOpen(true);
+  };
+
+  const openParticipationInfo = (type: 'video' | 'hosting') => {
+    setParticipationInfo(type);
   };
 
   const nextJurySlide = () => {
@@ -448,65 +454,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Participation Rules & Video Requirements */}
-      <section id="rules" className="py-10 sm:py-14 md:py-16 bg-slate-100/70 border-y border-slate-200/80">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-8 sm:mb-10">
-              <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/10 text-blue-800 border border-blue-200">
-                Регламент
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">
-                Требования к видеозаписям и материалам
-              </h2>
-              <p className="text-slate-600 mt-1.5 text-xs sm:text-sm">
-                Соблюдение простых правил гарантирует объективную экспертную оценку каждого конкурсного номера
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-4">
-              <div className="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-200/80">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-xl bg-blue-600/15 border border-blue-200 text-blue-800 flex items-center justify-center">
-                    <Video className="w-4 h-4" />
-                  </div>
-                  <h3 className="font-bold text-base sm:text-lg text-blue-950">Съемка и качество видео</h3>
-                </div>
-                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700">
-                  {PARTICIPATION_RULES.videoRequirements.map((rule, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-2"></span>
-                      <span>{rule}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-200/80">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-200 text-amber-700 flex items-center justify-center">
-                    <Globe2 className="w-4 h-4" />
-                  </div>
-                  <h3 className="font-bold text-base sm:text-lg text-blue-950">Размещение и ссылки</h3>
-                </div>
-                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700">
-                  {PARTICIPATION_RULES.hostingPlaces.map((rule, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 mt-2"></span>
-                      <span>{rule}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-4 p-3.5 bg-blue-50/80 rounded-xl border border-blue-200 text-xs text-blue-950 leading-relaxed">
-                  <strong>Публикация результатов:</strong> на 15-й день после окончания приема заявок имена обладателей Гран-при и протоколы публикуются на официальном сайте <strong>my-artcode.ru</strong> и в сообществе <strong>vk.com/triumph_org</strong>.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Expert Council Slider */}
       <section id="jury" className="py-8 sm:py-10 md:py-12 border-b border-slate-200/80 relative">
         <div className="container mx-auto px-3 sm:px-5 lg:px-6">
@@ -577,6 +524,40 @@ export default function Home() {
                 </div>
               );
             })()}
+          </div>
+        </div>
+      </section>
+
+      {/* Compact participation guidance — details open in modal windows */}
+      <section id="rules" className="py-6 sm:py-8 bg-slate-100/70 border-y border-slate-200/80">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-center sm:text-left">
+              <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/10 text-blue-800 border border-blue-200">
+                Перед подачей заявки
+              </span>
+              <h2 className="text-lg sm:text-xl font-extrabold text-blue-950 mt-2">Требования к конкурсным материалам</h2>
+              <p className="text-slate-600 mt-1 text-xs sm:text-sm">Откройте нужный раздел — подробности появятся во всплывающем окне.</p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-2.5 w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => openParticipationInfo('video')}
+                className="button-motion inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-blue-200 text-blue-950 hover:border-blue-400 hover:bg-blue-50 font-bold text-xs sm:text-sm shadow-sm"
+              >
+                <Video className="w-4 h-4 text-blue-800" />
+                Съёмка и качество
+              </button>
+              <button
+                type="button"
+                onClick={() => openParticipationInfo('hosting')}
+                className="button-motion inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-amber-200 text-blue-950 hover:border-amber-400 hover:bg-amber-50 font-bold text-xs sm:text-sm shadow-sm"
+              >
+                <Globe2 className="w-4 h-4 text-amber-700" />
+                Размещение и ссылки
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -816,6 +797,14 @@ export default function Home() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         defaultContestId={selectedContestSlug}
+      />
+
+      <ParticipationInfoModal
+        isOpen={participationInfo !== null}
+        onClose={() => setParticipationInfo(null)}
+        type={participationInfo ?? 'video'}
+        videoRequirements={PARTICIPATION_RULES.videoRequirements}
+        hostingPlaces={PARTICIPATION_RULES.hostingPlaces}
       />
 
       <ReportModal
