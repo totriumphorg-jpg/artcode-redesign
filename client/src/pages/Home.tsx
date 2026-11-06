@@ -8,7 +8,7 @@ import {
   FAQ_DATA,
   REPORTS_DATA,
 } from '@/const';
-import { ASSETS, getDisciplineImage, getJuryImage } from '@/assets';
+import { ASSETS, getDisciplineImage } from '@/assets';
 import { ApplicationModal } from '@/components/ApplicationModal';
 import { ReportModal } from '@/components/ReportModal';
 import { ParticipationInfoModal } from '@/components/ParticipationInfoModal';
@@ -37,6 +37,7 @@ import {
   SlidersHorizontal,
   Flame,
   FileText,
+  UserRound,
 } from 'lucide-react';
 import { trpc } from '@/lib/trpc';
 
@@ -205,7 +206,7 @@ export default function Home() {
               </h1>
 
               <p className="text-base sm:text-lg text-slate-700 max-w-2xl mx-auto xl:mx-0 font-normal leading-relaxed">
-                Регулярные заочные международные творческие конкурсы по вокалу, хореографии, театру, цирку и инструментальному творчеству. Персональная рецензия каждому участнику на официальном бланке.
+                Присоединяйтесь к конкурсам мирового уровня, получайте обратную связь по вашему выступлению от приглашенных экспертов со всего земного шара, формируйте новый вектор вашей творческой деятельности для стремительного профессионального роста и глубокого эстетического развития, обогащайте педагогический опыт современными разработками и создавайте новое в мире искусства!
               </p>
 
               {/* Action buttons */}
@@ -227,8 +228,8 @@ export default function Home() {
               {/* Advantages bar — compact spacing */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 pt-4 border-t border-slate-200/80 text-left">
                 <div className="min-w-0 p-3.5 sm:p-4 rounded-2xl glass-panel border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-amber-700 font-extrabold text-2xl font-serif">Жюри</div>
-                  <div className="text-xs sm:text-sm font-semibold text-blue-950 mt-1 leading-snug break-words">Заслуженные артисты и профессора</div>
+                  <div className="text-amber-700 font-extrabold text-2xl font-serif">Эксперты</div>
+                  <div className="text-xs sm:text-sm font-semibold text-blue-950 mt-1 leading-snug break-words">Заслуженные музыканты и артисты</div>
                 </div>
                 <div className="min-w-0 p-3.5 sm:p-4 rounded-2xl glass-panel border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow">
                   <div className="text-blue-800 font-extrabold text-2xl font-serif">14 дней</div>
@@ -236,7 +237,7 @@ export default function Home() {
                 </div>
                 <div className="min-w-0 p-3.5 sm:p-4 rounded-2xl glass-panel border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow">
                   <div className="text-emerald-700 font-extrabold text-2xl font-serif">100%</div>
-                  <div className="text-xs sm:text-sm font-semibold text-blue-950 mt-1 leading-snug break-words">Официальные дипломы и рецензии</div>
+                      <div className="text-xs sm:text-sm font-semibold text-blue-950 mt-1 leading-snug break-words">100% официальные дипломы и отзывы</div>
                 </div>
                 <div className="min-w-0 p-3.5 sm:p-4 rounded-2xl glass-panel border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow">
                   <div className="text-amber-700 font-extrabold text-2xl font-serif">Гранты</div>
@@ -258,7 +259,7 @@ export default function Home() {
                     Творческое объединение «Триумф»
                   </span>
                   <div className="text-lg sm:text-xl font-bold leading-tight mt-0.5">
-                    Ежемесячные смотры талантов со всего мира
+                    Новые конкурсы каждый месяц
                   </div>
                 </div>
               </div>
@@ -341,7 +342,7 @@ export default function Home() {
                     ? (rawImage.startsWith('http') ? rawImage : `${base}${rawImage.replace(/^\/+/, '')}`)
                     : getDisciplineImage(comp.discipline as any);
               const juryThree = (comp as any).juryNames
-                ? String((comp as any).juryNames).split(',').slice(0, 3).map((j: string) => j.trim())
+                ? String((comp as any).juryNames).split(String((comp as any).juryNames).includes(' | ') ? ' | ' : ',').slice(0, 3).map((j: string) => j.trim())
                 : ((comp as any).juryList || []);
 
               return (
@@ -404,7 +405,7 @@ export default function Home() {
                     <div className="p-2.5 bg-slate-100/90 rounded-xl border border-slate-200/90 mb-3 text-xs">
                       <div className="font-bold text-blue-950 mb-1 flex items-center gap-1.5">
                         <ShieldCheck className="w-3.5 h-3.5 text-amber-700" />
-                        <span>Экспертный совет (3 члена жюри):</span>
+                        <span>Заслуженные музыканты и артисты:</span>
                       </div>
                       <div className="space-y-0.5 text-slate-700">
                         {juryThree.map((name: string, idx: number) => (
@@ -461,7 +462,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6 sm:mb-8">
               <div>
                 <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/10 text-amber-700 border border-amber-200">
-                  Жюри мирового уровня
+                  Заслуженные музыканты и артисты
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-1.5">
                   Экспертный совет платформы
@@ -493,16 +494,11 @@ export default function Home() {
             {/* Compact Jury Card */}
             {(() => {
               const currentJury = JURY_MEMBERS[jurySlideIndex];
-              const imageSrc = getJuryImage(currentJury.id);
 
               return (
                 <div className="glass-panel rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-lg flex flex-col md:flex-row items-center gap-4 md:gap-6">
-                  <div className="w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0 border-2 border-amber-500/40 shadow-md stage-glow-amber">
-                    <img
-                      src={imageSrc}
-                      alt={currentJury.name}
-                      className="block w-full h-full object-contain p-2 hover:scale-105 transition-transform duration-500"
-                    />
+                  <div className="w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0 border-2 border-amber-500/40 shadow-md stage-glow-amber flex items-center justify-center" aria-label="Иконка эксперта">
+                    <UserRound className="w-20 h-20 sm:w-24 sm:h-24 text-blue-900/70" strokeWidth={1.4} />
                   </div>
 
                   <div className="space-y-3 text-center md:text-left flex-grow">

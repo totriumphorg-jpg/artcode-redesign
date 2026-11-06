@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useRoute, Link } from 'wouter';
 import { trpc } from '@/lib/trpc';
-import { ASSETS, getJuryImage } from '@/assets';
+import { ASSETS } from '@/assets';
 import { COMPETITIONS_DATA, JURY_MEMBERS } from '@/const';
+import { REGULATIONS_BY_DISCIPLINE } from '@/contestRegulations';
 import { ApplicationModal } from '@/components/ApplicationModal';
 import { Button } from '@/components/ui/button';
 import {
@@ -20,6 +21,7 @@ import {
   Award,
   Lock,
   Download,
+  UserRound,
 } from 'lucide-react';
 
 export default function ContestPage() {
@@ -29,55 +31,25 @@ export default function ContestPage() {
   const [openSection, setOpenSection] = useState<string>('goals');
   const isStaticGithubPages = typeof window !== 'undefined' && window.location.hostname.endsWith('github.io');
   const staticContest = COMPETITIONS_DATA.find((item) => item.slug === slug);
-  const staticRegulations = staticContest ? [
-    {
-      id: `${staticContest.slug}-about`,
-      sectionKey: 'about',
-      title: 'О конкурсе',
-      content: staticContest.description,
-    },
-    {
-      id: `${staticContest.slug}-nominations`,
-      sectionKey: 'nominations',
-      title: 'Номинации и направления',
-      content: staticContest.features[0],
-    },
-    {
-      id: `${staticContest.slug}-awards`,
-      sectionKey: 'awards',
-      title: 'Наградной пакет',
-      content: staticContest.features.slice(1).join('. '),
-    },
-    {
-      id: `${staticContest.slug}-timeline`,
-      sectionKey: 'timeline',
-      title: 'Сроки проведения',
-      content: `${staticContest.deadline}. ${staticContest.resultsDate}.`,
-    },
-    {
-      id: `${staticContest.slug}-jury`,
-      sectionKey: 'jury',
-      title: 'Экспертный совет',
-      content: staticContest.juryList.join(', '),
-    },
-    {
-      id: `${staticContest.slug}-fee`,
-      sectionKey: 'fee',
-      title: 'Финансовые условия',
-      content: `Организационный взнос — ${staticContest.feeAmount} руб. за конкурсный номер.`,
-    },
-  ] : [];
+  const staticRegulations = staticContest
+    ? REGULATIONS_BY_DISCIPLINE[staticContest.discipline].map((section) => ({
+        ...section,
+        id: `${staticContest.slug}-${section.sectionKey}`,
+      }))
+    : [];
 
   const { data: dbContest, isLoading, error } = trpc.contests.bySlug.useQuery({ slug }, {
     enabled: Boolean(slug) && !isStaticGithubPages,
   });
-  const contest = (dbContest || (staticContest ? {
-    ...staticContest,
-    receptionPeriod: staticContest.deadline,
-    resultsPeriod: staticContest.resultsDate,
-    juryNames: staticContest.juryList.join(' | '),
-    regulations: staticRegulations,
-  } : undefined)) as any;
+  const contest = (dbContest
+    ? { ...dbContest, regulations: staticContest ? staticRegulations : dbContest.regulations }
+    : (staticContest ? {
+        ...staticContest,
+        receptionPeriod: staticContest.deadline,
+        resultsPeriod: staticContest.resultsDate,
+        juryNames: staticContest.juryList.join(' | '),
+        regulations: staticRegulations,
+      } : undefined)) as any;
 
   if (isLoading && !staticContest) {
     return (
@@ -227,25 +199,12 @@ export default function ContestPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
               {juryList.map((name, index) => {
-                const matched = JURY_MEMBERS.find((j) => name.toLowerCase().includes(j.name.toLowerCase().split(' ')[0]));
-                const imageSrc = matched ? getJuryImage(matched.id) : null;
-                const initials = name
-                  .split(' ')
-                  .map((part) => part.charAt(0))
-                  .join('')
-                  .slice(0, 2)
-                  .toUpperCase();
+                const matched = JURY_MEMBERS.find((j) => name.toLowerCase().startsWith(j.name.toLowerCase()));
 
                 return (
                   <div key={index} className="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-200/80 flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full overflow-hidden bg-slate-100 mb-3 border-2 border-amber-500/40 shadow-md flex items-center justify-center">
-                      {imageSrc ? (
-                        <img src={imageSrc} alt={name} className="block w-full h-full object-contain p-1" />
-                      ) : (
-                        <span className="w-full h-full flex items-center justify-center bg-white text-amber-700 font-extrabold text-xl">
-                          {initials}
-                        </span>
-                      )}
+                    <div className="w-20 h-20 rounded-full overflow-hidden bg-slate-100 mb-3 border-2 border-amber-500/40 shadow-md flex items-center justify-center" aria-label="Иконка эксперта">
+                      <UserRound className="w-10 h-10 text-blue-900/70" strokeWidth={1.4} />
                     </div>
                     <h3 className="font-bold text-blue-950 text-base mb-0.5">{name}</h3>
                     <p className="text-xs text-amber-700 font-medium">{matched ? matched.role : 'Член экспертного совета'}</p>
