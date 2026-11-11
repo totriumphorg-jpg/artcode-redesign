@@ -96,13 +96,13 @@ describe("ARTCODE Platform Public and Admin APIs", () => {
       city: "Санкт-Петербург",
       email: "artist.test@my-artcode.com",
       phone: "+7 (999) 111-22-33",
-      paymentAmount: 790,
+      paymentAmount: 1700,
     });
 
     expect(result.success).toBe(true);
     expect(result.applicationId).toBeGreaterThan(0);
     expect(result.orderId).toMatch(/^ART-\d+-\d+$/);
-    expect(result.paymentAmount).toBe(790);
+    expect(result.paymentAmount).toBe(1700);
   });
 
   it("allows admin to filter applications and export separate CSV for a contest", async () => {

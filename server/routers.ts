@@ -53,7 +53,7 @@ export const appRouter = router({
           status: z.enum(["active", "archived", "draft"]).default("active"),
           receptionPeriod: z.string().min(2),
           resultsPeriod: z.string().min(2),
-          feeAmount: z.number().default(790),
+          feeAmount: z.number().default(1700),
           cardImage: z.string().min(1),
           bannerImage: z.string().optional(),
           accentColor: z.string().default("#2563eb"),
@@ -241,7 +241,7 @@ export const appRouter = router({
           email: z.string().email("Введите корректный email"),
           phone: z.string().min(6, "Введите контактный номер телефона"),
           comment: z.string().optional(),
-          paymentAmount: z.number().default(790),
+          paymentAmount: z.number().default(1700),
         })
       )
       .mutation(async ({ input }) => {

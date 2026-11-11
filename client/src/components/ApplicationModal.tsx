@@ -92,7 +92,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
       email,
       phone,
       comment: comment || undefined,
-      paymentAmount: (currentContest as any).feeAmount || 790,
+      paymentAmount: (currentContest as any).feeAmount || 1700,
     });
   };
 
@@ -152,7 +152,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                 </Select>
 
                 <div className="p-2.5 bg-amber-500/10 rounded-xl border border-amber-200 text-xs text-amber-900 flex flex-col sm:flex-row gap-1 sm:items-center sm:justify-between">
-                  <span>Организационный взнос: <strong className="text-blue-950 font-bold">{(currentContest as any).feeAmount || 790} руб.</strong></span>
+                  <span>Организационный взнос: <strong className="text-blue-950 font-bold">{(currentContest as any).feeAmount || 1700} руб.</strong></span>
                   <span className="text-amber-800 font-medium">Оплата онлайн через PayKeeper / МИР</span>
                 </div>
               </div>
