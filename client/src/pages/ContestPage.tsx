@@ -93,9 +93,11 @@ export default function ContestPage() {
             </Link>
             <div className="h-4 w-px bg-slate-200 hidden sm:block"></div>
             <Link href="/" className="flex items-center gap-2 truncate">
-              <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-blue-950 hover:text-amber-700 transition-colors">
-                ARTCODE
-              </span>
+              <img
+                src={ASSETS.artcodeLogo}
+                alt="ARTCODE"
+                className="h-7 sm:h-9 w-[126px] sm:w-[170px] object-contain object-left"
+              />
             </Link>
           </div>
 
@@ -299,7 +301,7 @@ export default function ContestPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <Link href="/" className="flex items-center gap-2">
-              <span className="font-extrabold text-xl text-blue-950">ARTCODE</span>
+              <img src={ASSETS.artcodeLogo} alt="ARTCODE" className="h-8 w-[145px] object-contain object-left" />
               <span className="text-xs font-semibold text-amber-700">ТО «Триумф»</span>
             </Link>
             <div className="text-xs text-slate-500">

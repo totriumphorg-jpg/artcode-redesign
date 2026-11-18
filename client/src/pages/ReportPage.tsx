@@ -2,6 +2,7 @@ import React from 'react';
 import { useRoute, Link } from 'wouter';
 import { trpc } from '@/lib/trpc';
 import { REPORTS_DATA } from '@/const';
+import { ASSETS } from '@/assets';
 import { Button } from '@/components/ui/button';
 import {
   ArrowLeft,
@@ -65,9 +66,11 @@ export default function ReportPage() {
             </Link>
             <div className="h-4 w-px bg-slate-200 hidden sm:block"></div>
             <Link href="/" className="flex items-center gap-2 truncate">
-              <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-blue-950 hover:text-amber-700 transition-colors">
-                ARTCODE
-              </span>
+              <img
+                src={ASSETS.artcodeLogo}
+                alt="ARTCODE"
+                className="h-7 sm:h-9 w-[126px] sm:w-[170px] object-contain object-left"
+              />
             </Link>
           </div>
 

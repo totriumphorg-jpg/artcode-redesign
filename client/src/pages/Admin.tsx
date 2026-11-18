@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { trpc } from '@/lib/trpc';
 import { useAuth } from '@/_core/hooks/useAuth';
 import { startLogin } from '@/const';
+import { ASSETS } from '@/assets';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -191,7 +192,7 @@ export default function Admin() {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/" className="font-extrabold text-xl text-blue-900 tracking-tight">
-              ARTCODE
+              <img src={ASSETS.artcodeLogo} alt="ARTCODE" className="h-7 w-[120px] object-contain object-left" />
             </Link>
             <span className="text-xs px-2.5 py-0.5 rounded-md bg-blue-100 text-blue-800 font-semibold">
               Управление платформой

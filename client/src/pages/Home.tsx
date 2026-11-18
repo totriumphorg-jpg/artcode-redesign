@@ -132,14 +132,11 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="flex flex-col">
-                <span className="font-extrabold text-2xl sm:text-3xl tracking-tight text-blue-950 group-hover:text-amber-700 transition-colors">
-                  ARTCODE
-                </span>
-                <span className="text-[10px] tracking-widest uppercase font-semibold text-amber-700 -mt-1">
-                  International Arts
-                </span>
-              </div>
+              <img
+                src={ASSETS.artcodeLogo}
+                alt="ARTCODE"
+                className="h-8 sm:h-10 w-[112px] sm:w-[164px] object-contain object-left transition-transform group-hover:scale-[1.02]"
+              />
             </Link>
 
             <nav className="hidden xl:flex items-center gap-6 text-sm font-semibold text-blue-950">
@@ -738,8 +735,11 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pb-6 border-b border-slate-200 text-sm">
             <div className="md:col-span-2 space-y-2">
               <div className="flex items-center gap-2.5">
-                <span className="font-extrabold text-2xl text-blue-950 tracking-tight">ARTCODE</span>
-                <span className="text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300">International Arts</span>
+                <img
+                  src={ASSETS.artcodeLogo}
+                  alt="ARTCODE"
+                  className="h-9 sm:h-11 w-[150px] sm:w-[190px] object-contain object-left"
+                />
               </div>
               <p className="text-xs text-slate-600 max-w-md leading-relaxed">
                 Международная платформа творческих конкурсов Творческого объединения «Триумф». Регулярные конкурсы по всем жанрам искусства с рецензированием от ведущих мировых экспертов, официальными дипломами и призовыми грантами.
